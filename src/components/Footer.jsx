@@ -89,8 +89,7 @@ const Footer = () => {
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-blue-400 mt-1 flex-shrink-0" />
                 <div className="text-gray-300">
-                  <p>123, MG Road, Bangalore</p>
-                  <p>Karnataka - 560001</p>
+                 <p> #2 Krishnappa building, near Ayyappa hotel Ramagondanahalli  S N halli post Yelahanka’ Bangalore 560064</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">

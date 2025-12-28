@@ -132,16 +132,16 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-slate-900 mb-2 leading-tight">Visit Us</h3>
-                  <p className="text-sm text-orange-600 font-bold">Bangalore HQ</p>
+                  <p className="text-sm text-orange-600 font-bold">#2 Krishnappa building, near Ayyappa hotel Ramagondanahalli  S N halli post Yelahanka’ Bangalore 560064</p>
                 </div>
               </div>
               
-              <div className="mb-8">
+              {/* <div className="mb-8">
                 <div className="text-sm text-slate-700 leading-relaxed mb-6 p-4 bg-gradient-to-r from-orange-50/70 to-slate-50/50 rounded-2xl border border-orange-200/40">
                   Nārnaund, Haryana<br />
                   <span className="text-xs text-slate-500">India Operations</span>
                 </div>
-              </div>
+              </div> */}
               
               <div className="space-y-3 text-xs">
                 <div className="flex justify-between items-center py-2 border-b border-slate-200/50">

@@ -125,10 +125,10 @@ const MemberPackageDetails = () => {
                       <Calendar className="w-4 h-4 shrink-0" />
                       <span>{packageData.month} {packageData.year}</span>
                     </div>
-                    <div className="flex items-center gap-2 p-3 bg-white/10 backdrop-blur-sm rounded-xl">
+                    {/* <div className="flex items-center gap-2 p-3 bg-white/10 backdrop-blur-sm rounded-xl">
                       <UsersIcon className="w-4 h-4 shrink-0" />
                       <span>{packageData.couples} Couples</span>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="text-right">
@@ -292,14 +292,14 @@ const MemberPackageDetails = () => {
                     <IndianRupee className="w-4 h-4" />
                     Revenue
                   </span>
-                  <span className="font-semibold text-emerald-600">₹{(packageData.totalRevenue || 0).toLocaleString()}</span>
+                  {/* <span className="font-semibold text-emerald-600">₹{(packageData.totalRevenue || 0).toLocaleString()}</span> */}
                 </div>
                 <div className="flex items-center justify-between py-2">
                   <span className="text-slate-600 flex items-center gap-2">
                     <Eye className="w-4 h-4" />
                     Package ID
                   </span>
-                  <span className="font-semibold text-blue-600">{packageData.packageId}</span>
+                  <span className="font-semibold text-blue-600">{packageData.packageId} Draw</span>
                 </div>
               </div>
             </div>

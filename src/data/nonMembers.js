@@ -1,92 +1,44 @@
 export const nonMemberPackages = [
   {
     packageId: 'NM001',
-    name: 'Ooty Hill Station Escape',
-    destination: ['Ooty', 'Coonoor'],
+    name: 'Shiridi Package tour',
+    destination: ['shiridi'],
     couples: 2,
     duration: '4 Days 3 Nights',
     images: [
-      'https://images.pexels.com/photos/962464/pexels-photo-962464.jpeg',
-      'https://images.pexels.com/photos/1007426/pexels-photo-1007426.jpeg'
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6-XhxB0o1JkqLGTVHhOkicL92_CpFe5IyvA&s'
     ],
-    description: 'Escape to the Queen of Hill Stations, Ooty. Enjoy the cool climate, tea gardens, and scenic toy train rides through the Nilgiri mountains.',
-    inclusions: ['Hill Resort Stay', 'All Meals', 'Transportation', 'Toy Train Ride', 'Botanical Garden Tours'],
+   description: 'Experience the spiritual journey to Shirdi with comfortable accommodation and guided tours. Visit the famous Sai Baba temple and nearby spiritual destinations.',
+    inclusions: ['Accommodation', 'Meals', 'Transportation', 'Sightseeing', 'Guide Services'],
     price: 15999,
     available: true,
   },
   {
     packageId: 'NM002',
-    name: 'Andaman Island Paradise',
-    destination: ['Port Blair', 'Havelock Island'],
+    name: 'Goa Tour Package',
+    destination: ['Goa'],
     couples: 2,
     duration: '6 Days 5 Nights',
-    images: [
-      'https://images.pexels.com/photos/1007426/pexels-photo-1007426.jpeg',
-      'https://images.pexels.com/photos/962464/pexels-photo-962464.jpeg'
+     images: [
+      'https://s3.india.com/wp-content/uploads/2024/06/List-of-8-Famous-Beaches-Around-Goa.jpg?impolicy=Medium_Widthonly&w=350&h=263'
     ],
-    description: 'Discover the pristine beaches and crystal-clear waters of Andaman Islands. Perfect for honeymoons and beach lovers.',
-    inclusions: ['Beach Resort Stay', 'All Meals', 'Flight Transfers', 'Water Sports', 'Scuba Diving'],
+    description: 'Enjoy the sun, sand, and sea at Goa\'s beautiful beaches. Experience the vibrant nightlife, Portuguese heritage, and water sports.',
+    inclusions: ['Beach Resort Stay', 'Breakfast & Dinner', 'Airport Transfers', 'Beach Activities', 'Sightseeing Tours'],
     price: 35999,
     available: true,
   },
   {
     packageId: 'NM003',
-    name: 'Rajasthan Royal Heritage',
-    destination: ['Jaipur', 'Udaipur', 'Jodhpur'],
+    name: 'Kerala Tour Package',
+    destination: ['Kerala'],
     couples: 2,
     duration: '8 Days 7 Nights',
-    images: [
-      'https://images.pexels.com/photos/962464/pexels-photo-962464.jpeg',
-      'https://images.pexels.com/photos/1007426/pexels-photo-1007426.jpeg'
+   images: [
+      'https://storage.googleapis.com/stateless-www-justwravel-com/2024/11/b062cce8-top-10.jpg'
     ],
-    description: 'Experience the royal grandeur of Rajasthan with visits to magnificent palaces, forts, and vibrant markets.',
-    inclusions: ['Palace Hotel Stays', 'All Meals', 'Private Transportation', 'Fort Entry Tickets', 'Cultural Performances'],
+    description: `Kerala, a state on India's tropical Malabar Coast, has nearly 600km of Arabian Sea shoreline. It's known for its palm-lined beaches and backwaters, a network of canals. Inland are the Western Ghats, mountains whose slopes support tea, coffee and spice plantations as well as wildlife.`,
+    inclusions: ['Houseboat Stay', 'All Meals', 'Transportation', 'Sightseeing', 'Cultural Shows'],
     price: 42999,
-    available: true,
-  },
-  {
-    packageId: 'NM004',
-    name: 'Kashmir Valley Beauty',
-    destination: ['Srinagar', 'Gulmarg', 'Pahalgam'],
-    couples: 2,
-    duration: '7 Days 6 Nights',
-    images: [
-      'https://images.pexels.com/photos/1007426/pexels-photo-1007426.jpeg',
-      'https://images.pexels.com/photos/962464/pexels-photo-962464.jpeg'
-    ],
-    description: 'Experience the paradise on earth with stunning valleys, snow-capped mountains, and serene Dal Lake houseboat stays.',
-    inclusions: ['Houseboat & Hotel Stay', 'All Meals', 'Shikara Rides', 'Transportation', 'Gondola Rides'],
-    price: 39999,
-    available: true,
-  },
-  {
-    packageId: 'NM005',
-    name: 'Manali Adventure Getaway',
-    destination: ['Manali', 'Solang Valley'],
-    couples: 2,
-    duration: '5 Days 4 Nights',
-    images: [
-      'https://images.pexels.com/photos/962464/pexels-photo-962464.jpeg',
-      'https://images.pexels.com/photos/1007426/pexels-photo-1007426.jpeg'
-    ],
-    description: 'Adventure awaits in Manali with paragliding, river rafting, and beautiful mountain landscapes perfect for nature lovers.',
-    inclusions: ['Mountain Resort Stay', 'All Meals', 'Adventure Activities', 'Transportation', 'Local Sightseeing'],
-    price: 24999,
-    available: true,
-  },
-  {
-    packageId: 'NM006',
-    name: 'Thailand Bangkok Pattaya',
-    destination: ['Bangkok', 'Pattaya'],
-    couples: 2,
-    duration: '6 Days 5 Nights',
-    images: [
-      'https://images.pexels.com/photos/1007426/pexels-photo-1007426.jpeg',
-      'https://images.pexels.com/photos/962464/pexels-photo-962464.jpeg'
-    ],
-    description: 'International getaway to Thailand featuring vibrant cities, beautiful temples, shopping, and exotic beaches.',
-    inclusions: ['4-Star Hotel Stay', 'Daily Breakfast', 'Return Flights', 'City Tours', 'Airport Transfers'],
-    price: 55999,
     available: true,
   }
 ];

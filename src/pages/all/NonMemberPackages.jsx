@@ -57,10 +57,10 @@ const NonMemberPackages = () => {
                <p className="text-gray-600 text-sm mb-4 line-clamp-2">{pkg.description}</p>
                
                <div className="space-y-3 mb-6">
-                 <div className="flex items-center text-sm">
+                 {/* <div className="flex items-center text-sm">
                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
                    {pkg.duration}
-                 </div>
+                 </div> */}
                  <div className="flex flex-wrap gap-2">
                    {pkg.inclusions.slice(0,3).map((item, i) => (
                      <span key={i} className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full">

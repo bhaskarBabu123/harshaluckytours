@@ -353,7 +353,7 @@ const MemberPackageDetails = () => {
            
 
             {/* Quick Links */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-5 border border-slate-200/50">
+            {/* <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-5 border border-slate-200/50">
               <h4 className="text-sm font-semibold text-slate-900 mb-4 flex items-center gap-2">
                 <Trophy className="w-4 h-4 text-amber-500" />
                 Quick Links
@@ -372,7 +372,7 @@ const MemberPackageDetails = () => {
                   Past Winners
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

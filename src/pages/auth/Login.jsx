@@ -124,12 +124,14 @@ const Login = () => {
           </form>
 
           {/* Security Footer */}
-          <div className="mt-6 flex items-center justify-center gap-4 text-slate-400">
-            <div className="flex items-center gap-1">
-              <ShieldCheck size={12} />
-              <span className="text-[10px] uppercase tracking-wider font-medium">Secured Access</span>
+            <div className="text-center pt-4 border-t border-slate-100 mt-6">
+              <p className="text-xs text-slate-500">
+                Are you Admin?{' '}
+                <Link to="/admin/login" className="text-sky-600 font-semibold hover:text-emerald-600 transition-colors">
+                  Login
+                </Link>
+              </p>
             </div>
-          </div>
         </div>
       </div>
     </div>

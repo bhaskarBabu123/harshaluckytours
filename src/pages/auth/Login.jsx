@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { Eye, EyeOff, Mail, Lock, Plane } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, ShieldCheck, ArrowLeft, Globe } from 'lucide-react';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   
@@ -16,130 +13,123 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
     const result = await login(formData.email, formData.password);
-    
-    if (result.success) {
-      navigate('/');
-    }
-    
+    if (result.success) navigate('/');
     setLoading(false);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div className="text-center">
-          <div className="mx-auto h-16 w-16 bg-blue-600 rounded-full flex items-center justify-center">
-            <Plane className="h-8 w-8 text-white" />
+    <div className="min-h-screen w-full flex items-center justify-center bg-slate-100 font-sans antialiased p-0 sm:p-4">
+      
+      {/* Main Compact Container */}
+      <div className="w-full max-w-[850px] flex flex-col md:flex-row bg-white overflow-hidden sm:rounded-2xl shadow-2xl min-h-[550px]">
+        
+        {/* Left Side: Professional Travel Visual (Hidden on small mobile if needed, or small height) */}
+        <div className="relative w-full md:w-5/12 h-40 md:h-auto overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1000&auto=format&fit=crop" 
+            alt="Travel" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex flex-col justify-end p-6">
+            <div className="hidden md:block">
+              <h3 className="text-white text-xl font-semibold mb-1">Harsha Lucky Tours</h3>
+              <p className="text-slate-200 text-xs">Explore the world with confidence.</p>
+            </div>
           </div>
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-            Welcome to Harsha Lucky Tours
-          </h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Sign in to your account to continue
-          </p>
+          <Link to="/" className="absolute top-4 left-4 p-2 bg-white/20 backdrop-blur-md rounded-lg text-white md:hidden">
+            <ArrowLeft size={18} />
+          </Link>
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
-              </label>
+        {/* Right Side: Compact Login Form */}
+        <div className="w-full md:w-7/12 p-6 sm:p-10 flex flex-col justify-center">
+          <div className="mb-6">
+            <h2 className="text-2xl font-semibold text-slate-800">Welcome Back</h2>
+            <p className="text-slate-500 text-sm mt-1">Please enter your credentials.</p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Email */}
+            <div className="space-y-1">
+              <label className="text-xs font-medium text-slate-600 ml-1">Email Address</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-gray-400" />
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <Mail size={16} />
                 </div>
                 <input
-                  id="email"
                   name="email"
                   type="email"
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="input-field pl-10"
-                  placeholder="Enter your email"
+                  className="block w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:bg-white focus:border-sky-500 transition-all outline-none"
+                  placeholder="name@example.com"
                 />
               </div>
             </div>
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                Password
-              </label>
+            {/* Password */}
+            <div className="space-y-1">
+              <div className="flex justify-between items-center ml-1">
+                <label className="text-xs font-medium text-slate-600">Password</label>
+                <button type="button" className="text-[11px] text-sky-600 hover:underline">Forgot?</button>
+              </div>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <Lock size={16} />
                 </div>
                 <input
-                  id="password"
                   name="password"
                   type={showPassword ? 'text' : 'password'}
                   required
                   value={formData.password}
                   onChange={handleChange}
-                  className="input-field pl-10 pr-10"
-                  placeholder="Enter your password"
+                  className="block w-full pl-10 pr-10 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:bg-white focus:border-sky-500 transition-all outline-none"
+                  placeholder="••••••••"
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
                   onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400"
                 >
-                  {showPassword ? (
-                    <EyeOff className="h-5 w-5 text-gray-400" />
-                  ) : (
-                    <Eye className="h-5 w-5 text-gray-400" />
-                  )}
+                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
             </div>
 
-            <div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full btn-primary flex items-center justify-center"
-              >
-                {loading ? (
-                  <>
-                    <LoadingSpinner size="sm" className="mr-2" />
-                    Signing in...
-                  </>
-                ) : (
-                  'Sign In'
-                )}
-              </button>
-            </div>
+            {/* Tight Action Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full mt-2 px-6 py-3 bg-gradient-to-r from-sky-600 to-emerald-600 hover:from-sky-700 hover:to-emerald-700 text-white rounded-xl text-sm font-semibold shadow-md transition-all flex items-center justify-center gap-2"
+            >
+              {loading ? <LoadingSpinner size="sm" className="text-white" /> : 'Login to Account'}
+            </button>
 
-            <div className="text-center">
-              <p className="text-sm text-gray-600">
-                Don't have an account?{' '}
-                <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
-                  Sign up here
+            <div className="text-center pt-4 border-t border-slate-100 mt-6">
+              <p className="text-xs text-slate-500">
+                New member?{' '}
+                <Link to="/register" className="text-sky-600 font-semibold hover:text-emerald-600 transition-colors">
+                  Create Account
                 </Link>
               </p>
             </div>
-
-            <div className="text-center">
-              <Link 
-                to="/admin/login" 
-                className="text-sm text-gray-500 hover:text-gray-700"
-              >
-                Admin Login
-              </Link>
-            </div>
           </form>
+
+          {/* Security Footer */}
+          <div className="mt-6 flex items-center justify-center gap-4 text-slate-400">
+            <div className="flex items-center gap-1">
+              <ShieldCheck size={12} />
+              <span className="text-[10px] uppercase tracking-wider font-medium">Secured Access</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

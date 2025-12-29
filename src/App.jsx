@@ -42,6 +42,7 @@ import AdminCurrentPackage from './pages/admin/AdminCurrentPackage';
 import AdminProfile from './pages/admin/AdminProfile';
 import MemberPackageDetails from './pages/all/MemeberPackageDetails';
 import ScrollToTop from './components/ScrollToTop';
+import Pack from './pages/all/Pack';
 
 // ---------------------------------------------------------------------
 // Layout with Header + Footer
@@ -73,10 +74,10 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/sitemap" element={<Sitemap />} />
           <Route path="/member/package/details/:id" element={<MemberPackageDetails />} />
-          <Route path="/member/packages" element={<MemberPackages />} />
+          <Route path="/member/packages" element={<Pack />} />
           <Route path="/non-member/packages" element={<NonMemberPackages />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         </Route>
 
@@ -120,9 +121,7 @@ function App() {
         <Route
           path="/package/:id"
           element={
-            <ProtectedRoute allowedRoles={['user']}>
-              <PackageDetails />
-            </ProtectedRoute>
+           <PackageDetails />
           }
         />
 

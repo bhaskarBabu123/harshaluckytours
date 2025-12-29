@@ -25,6 +25,7 @@ export default function Users() {
     address: '',
     dateOfBirth: '',
     isActive: true,
+    virtualCardNumber:''
   });
   const [formLoading, setFormLoading] = useState(false);
 
@@ -82,6 +83,7 @@ export default function Users() {
       city: user.city,
       address: user.address ?? '',
       isActive: user.isActive,
+      virtualCardNumber:user.virtualCardNumber
     });
   };
 
@@ -215,7 +217,8 @@ export default function Users() {
                   <input placeholder="Email *" type="email" value={createForm.email} onChange={(e) => setCreateForm({ ...createForm, email: e.target.value })} className="border rounded px-3 py-2" required />
                   <input placeholder="Phone *" value={createForm.phone} onChange={(e) => setCreateForm({ ...createForm, phone: e.target.value })} className="border rounded px-3 py-2" required />
                   <input placeholder="City *" value={createForm.city} onChange={(e) => setCreateForm({ ...createForm, city: e.target.value })} className="border rounded px-3 py-2" required />
-                  <input placeholder="Address" value={createForm.address} onChange={(e) => setCreateForm({ ...createForm, address: e.target.value })} className="border rounded px-3 py-2 md:col-span-2" />
+                  <input placeholder="Address" value={createForm.address} onChange={(e) => setCreateForm({ ...createForm, address: e.target.value })} className="border rounded px-3 py-2 md:col-span-2" /> 
+                  <input placeholder="virtual Card Number" value={createForm.virtualCardNumber} onChange={(e) => setCreateForm({ ...createForm, virtualCardNumber: e.target.value })} className="border rounded px-3 py-2 md:col-span-2" />
                   <input type="date" placeholder="Date of Birth" value={createForm.dateOfBirth} onChange={(e) => setCreateForm({ ...createForm, dateOfBirth: e.target.value })} className="border rounded px-3 py-2" />
                   <label className="flex items-center gap-2 md:col-span-2">
                     <input type="checkbox" checked={createForm.isActive} onChange={(e) => setCreateForm({ ...createForm, isActive: e.target.checked })} />
@@ -266,7 +269,10 @@ export default function Users() {
                   <tr key={user._id} className="hover:bg-gray-50">
                     <td className="px-6 py-4">
                       {editingId === user._id ? (
+                       <>
                         <input value={editForm.name} onChange={(e) => setEditForm({ ...editForm, name: e.target.value })} className="border rounded px-2 py-1 w-full" />
+                          <input value={editForm.virtualCardNumber} onChange={(e) => setEditForm({ ...editForm, virtualCardNumber: e.target.value })} className="border rounded px-2 py-1 w-full" />
+                       </>
                       ) : (
                         <div>
                           <p className="font-medium">{user.name}</p>

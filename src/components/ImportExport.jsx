@@ -41,8 +41,8 @@ export default function ImportExport({ type, onSuccess, onCancel }) {
   const downloadSample = () => {
     const rows = type === 'users'
       ? [
-          { name: 'John Doe', email: 'john@example.com', phone: '+1234567890', city: 'Delhi' },
-          { name: 'Jane Smith', email: 'jane@example.com', phone: '+0987654321', city: 'Mumbai' },
+          { name: 'John Doe', email: 'john@example.com', phone: '+1234567890', city: 'Delhi', virtualCardNumber:'HLT-001' },
+          { name: 'Jane Smith', email: 'jane@example.com', phone: '+0987654321', city: 'Mumbai', virtualCardNumber:'HLT-002' },
         ]
       : [
           { email: 'john@example.com', amount: 500, dueDate: '2025-12-01', status: 'pending' },

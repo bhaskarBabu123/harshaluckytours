@@ -1,243 +1,205 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { Helmet } from 'react-helmet-async';
-import { Home, Package, Users, Phone, FileText, Shield, ExternalLink } from 'lucide-react';
+import { 
+  Home, Package, Users, Phone, FileText, Shield, 
+  ExternalLink, Map, Compass, Globe, CreditCard,
+  ChevronRight, Bookmark, LayoutGrid, Lock, User
+} from 'lucide-react';
 
 const Sitemap = () => {
-  const pages = [
-    {
-      title: 'Home',
-      path: '/',
-      icon: Home,
-      description: 'Main landing page with hero section and featured packages'
-    },
-    {
-      title: 'Member Packages',
-      path: '/packages/member',
-      icon: Package,
-      description: 'Exclusive travel packages for members with lucky draw system'
-    },
-    {
-      title: 'Non-Member Packages', 
-      path: '/packages/non-member',
-      icon: Package,
-      description: 'Direct booking packages with fixed pricing'
-    },
-    {
-      title: 'About Us',
-      path: '/about',
-      icon: Users,
-      description: 'Learn about Harsha Lucky Tours and our mission'
-    },
-    {
-      title: 'Contact Us',
-      path: '/contact',
-      icon: Phone,
-      description: 'Get in touch for inquiries and support'
-    },
-    {
-      title: 'Sitemap',
-      path: '/sitemap',
-      icon: FileText,
-      description: 'Complete site structure and navigation'
-    },
-    {
-      title: 'Privacy Policy',
-      path: '/privacy',
-      icon: Shield,
-      description: 'Privacy policy and data protection information'
-    }
+  // Main Navigation mapped directly to your App.jsx routes
+  const mainNavigation = [
+    { title: 'Home Portal', path: '/', icon: Home, desc: 'Primary gateway and company overview.' },
+    { title: 'Member Packages', path: '/member/packages', icon: Bookmark, desc: 'Exclusive ₹1000/mo lucky draw programs.' },
+    { title: 'Non-Member Packages', path: '/non-member/packages', icon: Package, desc: 'Fixed-price luxury travel bookings.' },
+    { title: 'About Company', path: '/about', icon: Users, desc: 'Our mission, history, and travel philosophy.' },
+    { title: 'Contact Support', path: '/contact', icon: Phone, desc: 'Direct lines for Bangalore headquarters.' },
+    { title: 'Privacy Policy', path: '/privacy-policy', icon: Shield, desc: 'Legal documentation and data security.' }
+  ];
+
+  const authLinks = [
+    { title: 'Member Login', path: '/login', icon: User },
+    { title: 'Create Account', path: '/register', icon: ExternalLink },
+    { title: 'Admin Gateway', path: '/admin/login', icon: Lock }
   ];
 
   const packageCategories = [
     {
-      title: 'Member Travel Packages',
+      label: 'Scheme Destinations',
+      icon: <Compass className="w-4 h-4" />,
       items: [
-        'Shirdi Bheema Shankara Package',
-        'Kerala Backwaters Paradise',
-        'Goa Beach Carnival',
-        'Mysore Palace Heritage Tour',
-        'Coorg Coffee Plantation Retreat',
-        'Hampi Historical Adventure'
+        'Shirdi Bheema Shankara', 
+        'Kerala Backwaters', 
+        'Goa Beach Carnival', 
+        'Mysore Heritage', 
+        'Coorg Plantation', 
+        'Hampi Historical'
       ]
     },
     {
-      title: 'Non-Member Travel Packages',
+      label: 'Global & Premium',
+      icon: <Globe className="w-4 h-4" />,
       items: [
-        'Ooty Hill Station Escape',
-        'Andaman Island Paradise',
-        'Rajasthan Royal Heritage',
-        'Kashmir Valley Beauty',
-        'Manali Adventure Getaway',
-        'Thailand Bangkok Pattaya'
+        'Thailand Explorer', 
+        'Andaman Paradise', 
+        'Rajasthan Royal', 
+        'Kashmir Valley', 
+        'Manali Adventure', 
+        'Dubai Skyline'
       ]
     }
   ];
 
   return (
-    <>
-      {/* <Helmet>
-        <title>Sitemap | Harsha Lucky Tours | Complete Site Navigation</title>
-        <meta name="description" content="Complete sitemap of Harsha Lucky Tours website. Find all pages, travel packages, and information easily." />
-        <meta name="keywords" content="sitemap, harsha lucky tours navigation, website structure, travel packages index" />
-      </Helmet> */}
-
-      <div className="py-20 bg-gray-50 min-h-screen">
-        <div className="container mx-auto px-4">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
-              Website Sitemap
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Navigate through all pages and sections of Harsha Lucky Tours website. 
-              Find everything you need quickly and easily.
-            </p>
+    <div className="bg-[#fafafa] font-sans antialiased text-slate-700 pb-24">
+      
+      {/* Header Section */}
+      <section className="pt-32 pb-16 bg-white border-b border-slate-200">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="h-px w-8 bg-blue-600"></div>
+            <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-blue-600">Site Directory</span>
           </div>
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">
+            System <span className="text-slate-400 font-light">Architecture</span>
+          </h1>
+          <p className="text-sm text-slate-500 max-w-xl leading-relaxed font-medium">
+            Centralized navigation index for Harsha Lucky Tours. Access membership portals, package inventories, and legal documentation.
+          </p>
+        </div>
+      </section>
 
-          {/* Main Pages */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8">Main Pages</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {pages.map((page, index) => {
-                const IconComponent = page.icon;
-                return (
-                  <Link
-                    key={index}
-                    to={page.path}
-                    className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group"
-                  >
-                    <div className="flex items-start space-x-4">
-                      <div className="bg-gradient-to-r from-blue-100 to-teal-100 p-3 rounded-lg group-hover:from-blue-200 group-hover:to-teal-200 transition-all duration-300">
-                        <IconComponent className="h-6 w-6 text-blue-600" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
-                          {page.title}
-                        </h3>
-                        <p className="text-gray-600 text-sm leading-relaxed">
-                          {page.description}
-                        </p>
-                        <div className="flex items-center text-blue-600 text-sm mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <span>Visit Page</span>
-                          <ExternalLink className="h-4 w-4 ml-1" />
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Package Categories */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8">Travel Packages</h2>
-            <div className="grid lg:grid-cols-2 gap-8">
-              {packageCategories.map((category, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-lg p-8">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                    <Package className="h-6 w-6 mr-3 text-blue-600" />
-                    {category.title}
-                  </h3>
-                  <div className="space-y-3">
-                    {category.items.map((item, itemIndex) => (
-                      <div key={itemIndex} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                        <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-teal-600 rounded-full"></div>
-                        <span className="text-gray-700">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <Link
-                    to={category.title.includes('Member') && !category.title.includes('Non') ? '/member/packages' : '/non-member/packages'}
-                    className="inline-flex items-center mt-6 text-blue-600 hover:text-blue-800 font-semibold"
-                  >
-                    View All Packages
-                    <ExternalLink className="h-4 w-4 ml-1" />
-                  </Link>
+      <main className="max-w-6xl mx-auto px-6 py-16">
+        
+        {/* 1. Main Navigation Grid */}
+        <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-8 flex items-center gap-2">
+          <LayoutGrid size={14} /> Core Platform Pages
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+          {mainNavigation.map((page, idx) => (
+            <Link 
+              key={idx} 
+              to={page.path}
+              className="group bg-white border border-slate-200 p-6 rounded-xl hover:border-blue-400 transition-all duration-300 shadow-sm"
+            >
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-slate-50 rounded-lg text-slate-400 group-hover:text-blue-600 group-hover:bg-blue-50 transition-colors">
+                  <page.icon size={20} strokeWidth={1.5} />
                 </div>
-              ))}
-            </div>
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900 mb-1 group-hover:text-blue-600 flex items-center gap-1">
+                    {page.title} <ChevronRight size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                  </h3>
+                  <p className="text-[12px] text-slate-500 leading-relaxed font-medium">{page.desc}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* 2. Package Inventory & Auth Actions */}
+        <div className="grid lg:grid-cols-3 gap-8 mb-20">
+          <div className="lg:col-span-2 grid md:grid-cols-2 gap-8">
+            {packageCategories.map((cat, idx) => (
+              <div key={idx} className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                <div className="px-6 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-slate-900 flex items-center gap-2">
+                    {cat.icon} {cat.label}
+                  </span>
+                </div>
+                <div className="p-6 grid grid-cols-1 gap-3">
+                  {cat.items.map((item, i) => (
+                    <div key={i} className="flex items-center gap-3 text-sm text-slate-600 hover:text-blue-600 cursor-default transition-colors">
+                      <div className="w-1 h-1 rounded-full bg-slate-300" />
+                      <span className="font-medium">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Quick Links */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8">Quick Actions</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-gradient-to-r from-blue-600 to-teal-600 rounded-xl p-6 text-white text-center">
-                <Package className="h-8 w-8 mx-auto mb-4" />
-                <h4 className="font-bold mb-2">Browse Packages</h4>
-                <p className="text-sm opacity-90 mb-4">Explore all travel packages</p>
-                <Link to="/member/packages" className="bg-white text-blue-600 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition-colors">
-                  View Packages
-                </Link>
+          {/* Access & Security Sidebar */}
+          <div className="space-y-6">
+            <div className="bg-slate-900 rounded-2xl p-8 text-white">
+              <h3 className="text-lg font-bold mb-6 tracking-tight">Account Access</h3>
+              <div className="space-y-4">
+                {authLinks.map((link, i) => (
+                  <Link 
+                    key={i} 
+                    to={link.path} 
+                    className="flex items-center gap-3 text-[12px] font-bold uppercase tracking-widest text-slate-300 hover:text-white transition-colors"
+                  >
+                    <link.icon size={16} className="text-blue-500" />
+                    {link.title}
+                  </Link>
+                ))}
               </div>
-
-              <div className="bg-gradient-to-r from-teal-600 to-green-600 rounded-xl p-6 text-white text-center">
-                <Users className="h-8 w-8 mx-auto mb-4" />
-                <h4 className="font-bold mb-2">Learn About Us</h4>
-                <p className="text-sm opacity-90 mb-4">Discover our story</p>
-                <Link to="/about" className="bg-white text-teal-600 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition-colors">
-                  Read More
-                </Link>
-              </div>
-
-              <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-xl p-6 text-white text-center">
-                <Phone className="h-8 w-8 mx-auto mb-4" />
-                <h4 className="font-bold mb-2">Contact Us</h4>
-                <p className="text-sm opacity-90 mb-4">Get in touch today</p>
-                <Link to="/contact" className="bg-white text-green-600 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition-colors">
-                  Contact Now
-                </Link>
-              </div>
-
-              <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl p-6 text-white text-center">
-                <Home className="h-8 w-8 mx-auto mb-4" />
-                <h4 className="font-bold mb-2">Go Home</h4>
-                <p className="text-sm opacity-90 mb-4">Back to homepage</p>
-                <Link to="/" className="bg-white text-purple-600 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition-colors">
-                  Home Page
-                </Link>
+              <div className="mt-8 pt-6 border-t border-slate-800">
+                <p className="text-[11px] text-slate-400 leading-relaxed mb-4 font-medium">
+                  Need a custom itinerary? Contact our Bangalore desk.
+                </p>
+                <a href="tel:+919019997133" className="block w-full text-center py-3 bg-blue-600 hover:bg-blue-500 rounded-lg text-[11px] font-bold uppercase tracking-widest transition-colors">
+                  Call Support
+                </a>
               </div>
             </div>
-          </div>
-
-          {/* Footer Navigation */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Website Structure</h2>
-            <div className="grid md:grid-cols-3 gap-8 text-sm">
-              <div>
-                <h4 className="font-bold text-gray-800 mb-3">Main Navigation</h4>
-                <ul className="space-y-2 text-gray-600">
-                  <li>• Home Page</li>
-                  <li>• Travel Packages</li>
-                  <li>• About Company</li>
-                  <li>• Contact Information</li>
-                </ul>
+            
+            <div className="bg-blue-50 border border-blue-100 rounded-2xl p-6">
+              <div className="flex items-center gap-2 text-blue-600 mb-2">
+                <CreditCard size={16} />
+                <span className="text-xs font-bold uppercase tracking-widest">Secure Payments</span>
               </div>
-              <div>
-                <h4 className="font-bold text-gray-800 mb-3">Package Types</h4>
-                <ul className="space-y-2 text-gray-600">
-                  <li>• Member Lucky Draw Packages</li>
-                  <li>• Non-Member Direct Booking</li>
-                  <li>• Domestic Destinations</li>
-                  <li>• International Tours</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-bold text-gray-800 mb-3">Support Pages</h4>
-                <ul className="space-y-2 text-gray-600">
-                  <li>• Privacy Policy</li>
-                  <li>• Terms & Conditions</li>
-                  <li>• Site Navigation</li>
-                  <li>• Customer Support</li>
-                </ul>
-              </div>
+              <p className="text-[11px] text-blue-700 font-medium leading-relaxed">
+                All ₹1000 scheme contributions are tracked via our secure internal ledger system.
+              </p>
             </div>
           </div>
         </div>
-      </div>
-    </>
+
+        {/* 3. Structural Hierarchy Footer */}
+        <div className="border-t border-slate-200 pt-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <h4 className="text-[11px] font-bold uppercase tracking-widest text-slate-900 mb-6">Discovery</h4>
+              <ul className="space-y-3 text-[12px] font-medium text-slate-500">
+                <li><Link to="/member/packages" className="hover:text-blue-600">Member Schemes</Link></li>
+                <li><Link to="/non-member/packages" className="hover:text-blue-600">Direct Booking</Link></li>
+                <li className="hover:text-blue-600 cursor-pointer">Weekend Trips</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-[11px] font-bold uppercase tracking-widest text-slate-900 mb-6">Company</h4>
+              <ul className="space-y-3 text-[12px] font-medium text-slate-500">
+                <li><Link to="/about" className="hover:text-blue-600">About Us</Link></li>
+                <li><Link to="/contact" className="hover:text-blue-600">Contact</Link></li>
+                <li className="hover:text-blue-600 cursor-pointer">Global Partners</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-[11px] font-bold uppercase tracking-widest text-slate-900 mb-6">Legal</h4>
+              <ul className="space-y-3 text-[12px] font-medium text-slate-500">
+                <li><Link to="/privacy-policy" className="hover:text-blue-600">Privacy Policy</Link></li>
+                <li className="hover:text-blue-600 cursor-pointer">Terms of Service</li>
+                <li className="hover:text-blue-600 cursor-pointer">Refund Policy</li>
+              </ul>
+            </div>
+            <div className="flex flex-col items-end">
+              <div className="p-4 bg-slate-100 rounded-xl inline-block">
+                <Map className="text-slate-400" size={32} strokeWidth={1} />
+              </div>
+              <p className="mt-4 text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] text-right leading-loose">
+                Harsha Lucky Tours<br />Bangalore, KA 560064
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer className="py-12 text-center">
+        <p className="text-[10px] text-slate-400 uppercase tracking-[0.4em]">Site Index Verified • 2025</p>
+      </footer>
+    </div>
   );
 };
 

@@ -1,161 +1,133 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Users, MapPin, CheckCircle, ArrowRight } from 'lucide-react';
+import { 
+  Calendar, Users, MapPin, CheckCircle, ArrowRight, 
+  Gift, Plane, Package, ShieldCheck, Sparkles, 
+  ShoppingBag, ChevronRight, ArrowUpRight, Trophy, Landmark
+} from 'lucide-react';
 import { nonMemberPackages } from '../../data/nonMembers';
 import { giftCatalogue } from '../../data/gifts';
 
 const NonMemberPackages = () => {
   return (
-    <div className="py-20 bg-gray-50 min-h-screen">
-      <div className="container mx-auto px-4">
-        {/* HEADER */}
+    <div className="min-h-screen bg-white font-sans antialiased">
       
-
-        {/* TOURS GRID */}
+      {/* --- PROFESSIONAL HEADER (MATCHING PACK COMPONENT) --- */}
+      <div className="max-w-7xl mx-auto px-6 pt-20 pb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-100 pb-12">
           <div>
-              <div className="max-w-6xl mx-auto px-4 py-12">
-       {/* Header */}
-       <div className="text-center mb-16">
-         <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
-           Guaranteed Rewards for Loyal Members
-         </h2>
-         <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-           Complete your Dream Scheme without winning? Choose any premium tour OR home gift.
-         </p>
-       </div>
-       <div className="bg-white border border-gray-200 rounded-xl p-6 max-w-xl mx-auto">
-            <div className="flex items-center justify-center mb-3">
-              <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
-              <span className="text-sm font-medium text-gray-800">Your Reward is Guaranteed</span>
+            <div className="flex items-center gap-2 mb-4">
+              <span className="h-1 w-12 bg-blue-600 rounded-full" />
+              <span className="text-[11px] font-black uppercase tracking-[0.3em] text-blue-600">Loyalty Redemption</span>
             </div>
-            <p className="text-xs text-gray-600 text-center">
-              Pick tour OR gift • No loss • Full value assured
+            <h2 className="text-4xl md:text-5xl font-black text-slate-950 tracking-tighter mb-4">
+              Guaranteed <span className="text-slate-300 font-light">Rewards</span>
+            </h2>
+            <p className="text-slate-500 font-medium max-w-lg text-sm leading-relaxed">
+              Every commitment is valued. If your scheme concludes without a draw win, 
+              redeem your total contribution value for these premium assets.
             </p>
           </div>
-     
-       {/* Tour Packages */}
-       <section className="mb-16">
-         <div className="flex justify-between items-center mb-8">
-           <h3 className="text-2xl font-medium text-gray-900">Premium Tour Options</h3>
-           <Link to="/tours" className="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center">
-             View All <ArrowRight className="ml-1 h-4 w-4" />
-           </Link>
-         </div>
-         
-         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-           {nonMemberPackages.map((pkg) => (
-             <div key={pkg.id} className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-blue-200 hover:bg-blue-50/50 transition-all duration-300">
-               <div className="h-48 w-full rounded-xl overflow-hidden mb-6">
-                 <img 
-                   src={pkg.images[0]} 
-                   alt={pkg.name}
-                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                 />
-               </div>
-               
-               <h4 className="text-xl font-medium text-gray-900 mb-3 line-clamp-2">{pkg.name}</h4>
-               <p className="text-gray-600 text-sm mb-4 line-clamp-2">{pkg.description}</p>
-               
-               <div className="space-y-3 mb-6">
-                 {/* <div className="flex items-center text-sm">
-                   <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                   {pkg.duration}
-                 </div> */}
-                 <div className="flex flex-wrap gap-2">
-                   {pkg.inclusions.slice(0,3).map((item, i) => (
-                     <span key={i} className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full">
-                       {item}
-                     </span>
-                   ))}
-                 </div>
-               </div>
-               
-               {/* <button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white text-sm font-medium py-3 px-4 rounded-xl transition-all duration-300">
-                 Select Tour
-               </button> */}
-             </div>
-           ))}
-         </div>
-       </section>
-     
-       {/* Gift Catalogue */}
-       <section>
-         <div className="flex justify-between items-center mb-8">
-           <h3 className="text-2xl font-medium text-gray-900">Premium Home Gifts</h3>
-           <span className="text-sm text-gray-500">12 options - doorstep delivery</span>
-         </div>
-         
-         <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-           {giftCatalogue.map((gift) => (
-             <div key={gift.id} className="bg-white border border-gray-200 rounded-xl p-4 hover:border-blue-200 hover:bg-blue-50/30 transition-all duration-300 group">
-               <div className="h-32 w-full rounded-lg overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
-                 <img 
-                   src={gift.image} 
-                   alt={gift.name}
-                   className="w-full h-full object-cover"
-                 />
-               </div>
-               <h5 className="font-medium text-sm text-gray-900 mb-2 line-clamp-1">{gift.name}</h5>
-               <p className="text-xs text-gray-600 mb-4 line-clamp-1">{gift.benefit}</p>
-               {/* <button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white text-xs font-medium py-2 px-3 rounded-lg transition-all duration-300">
-                 Choose Gift
-               </button> */}
-             </div>
-           ))}
-         </div>
-       </section>
-     
-     </div>
-     
-     
-     
-     
-     </div>
-
-        {/* GIFT OPTION */}
-  
-        {/* WHY CHOOSE */}
-        <div className="text-center mb-16">
-          <div className="bg-white border border-gray-200 rounded-xl p-8 max-w-4xl mx-auto">
-            <h3 className="text-xl font-normal text-gray-800 mb-6">
-              Your Loyalty is Rewarded
-            </h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <CheckCircle className="h-6 w-6 text-green-600" />
-                </div>
-                <h4 className="font-medium text-gray-800 mb-2 text-sm">No Risk</h4>
-                <p className="text-xs text-gray-600">100% guaranteed reward</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Calendar className="h-6 w-6 text-blue-600" />
-                </div>
-                <h4 className="font-medium text-gray-800 mb-2 text-sm">Flexible Choice</h4>
-                <p className="text-xs text-gray-600">Tour OR gift - you choose</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Users className="h-6 w-6 text-teal-600" />
-                </div>
-                <h4 className="font-medium text-gray-800 mb-2 text-sm">Family Package</h4>
-                <p className="text-xs text-gray-600">Complete 4-person vacation</p>
-              </div>
+          <div className="flex gap-4">
+            <div className="text-right">
+              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Total Options</p>
+              <p className="text-2xl font-black text-slate-900">25+ Items</p>
+            </div>
+            <div className="w-px h-10 bg-slate-200" />
+            <div className="text-right">
+              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Status</p>
+              <p className="text-2xl font-black text-emerald-600 uppercase">Redeemable</p>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* CTA */}
-        {/* <div className="text-center">
-          <Link 
-            to="/claim-reward"
-            className="inline-flex items-center bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-medium px-10 py-4 rounded-xl text-sm transition-all duration-300"
-          >
-            Claim Your Reward
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
-        </div> */}
+      {/* --- TOUR OPTIONS (PREMIUM GRID) --- */}
+      <section className="max-w-7xl mx-auto px-6 mb-24">
+        <div className="flex items-center justify-between mb-10">
+          <h3 className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-400 flex items-center gap-2">
+            <Plane size={14} className="text-blue-600" /> 01. Premium Tour Redemptions
+          </h3>
+          <div className="h-px flex-1 bg-slate-50 mx-6" />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {nonMemberPackages.map((pkg, index) => (
+            <article key={pkg.id} className="group border border-slate-200 rounded-xl overflow-hidden hover:border-slate-950 transition-all duration-300 flex flex-col h-full">
+              <div className="h-48 overflow-hidden relative">
+                <img src={pkg.images[0]} alt={pkg.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute top-4 left-4 bg-slate-950/80 backdrop-blur-sm text-white px-2 py-1 rounded text-[9px] font-black uppercase tracking-widest">
+                  Value Recovered
+                </div>
+              </div>
+
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex justify-between items-start mb-4">
+                  <h4 className="text-lg font-black text-slate-950 leading-tight group-hover:text-blue-600 transition-colors uppercase tracking-tighter">
+                    {pkg.name}
+                  </h4>
+                  <ArrowUpRight size={18} className="text-slate-300 group-hover:text-blue-600" />
+                </div>
+
+                <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wide leading-relaxed mb-6 line-clamp-2">
+                  {pkg.description}
+                </p>
+
+                <div className="grid grid-cols-2 gap-2 mt-auto">
+                  {pkg.inclusions.slice(0, 2).map((item, i) => (
+                    <div key={i} className="bg-slate-50 p-2 rounded-lg flex items-center gap-2">
+                      <CheckCircle size={10} className="text-blue-600" />
+                      <span className="text-[9px] font-black uppercase tracking-tight text-slate-600">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* --- GIFT CATALOGUE (TINY COMPACT GRID) --- */}
+      <section className="bg-slate-50 py-24 border-y border-slate-100">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between mb-12">
+            <h3 className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-400 flex items-center gap-2">
+              <Gift size={14} className="text-blue-600" /> 02. Premium Home Assets
+            </h3>
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Doorstep Delivery Guaranteed</span>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            {giftCatalogue.map((gift) => (
+              <div key={gift.id} className="bg-white border border-slate-200 rounded-xl p-4 hover:border-slate-950 transition-all group">
+                <div className="aspect-square rounded-lg overflow-hidden bg-slate-50 mb-4">
+                  <img src={gift.image} alt={gift.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+                </div>
+                <p className="text-[10px] font-black text-slate-900 uppercase tracking-tight mb-1 line-clamp-1">{gift.name}</p>
+                <div className="flex items-center justify-between mt-3">
+                   <span className="text-[8px] font-black text-blue-600 uppercase tracking-widest">{gift.benefit}</span>
+                   <ChevronRight size={12} className="text-slate-300 group-hover:text-slate-950 transition-colors" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- FOOTER MOTIVATION --- */}
+      <div className="max-w-3xl mx-auto text-center py-24 px-6">
+        <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full mb-8">
+          <ShieldCheck size={14} />
+          <span className="text-[9px] font-black uppercase tracking-widest">Anti-Loss Protection Verified</span>
+        </div>
+        <h3 className="text-2xl font-light text-slate-400 leading-relaxed italic mb-8">
+          "Our loyalty program ensures that every member is a <span className="text-slate-900 font-black tracking-tight">beneficiary</span>. Whether through the draw or through guaranteed redemption, your value is secured."
+        </h3>
+        <div className="flex justify-center items-center gap-4">
+          <div className="h-[1px] w-12 bg-slate-200" />
+          <Landmark size={20} className="text-slate-900" />
+          <div className="h-[1px] w-12 bg-slate-200" />
+        </div>
       </div>
     </div>
   );

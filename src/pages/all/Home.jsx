@@ -1,489 +1,274 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { Helmet } from 'react-helmet-async';
-import { ArrowRight, Gift, Users, Clock, Star, Shield, MapPin, Phone } from 'lucide-react';
-import { memberPackages } from '../../data/packages';
+import { 
+  ArrowRight, Gift, Users, Clock, Star, Shield, 
+  MapPin, IndianRupee, Plane, CheckCircle, Sparkles, 
+  TrendingUp, Globe, Award, HelpCircle, ChevronRight,
+  ShieldCheck, Zap, Heart,
+  Youtube,
+  Trophy
+} from 'lucide-react';
 import { nonMemberPackages } from '../../data/nonMembers';
 import Pack from './Pack';
 import { giftCatalogue } from '../../data/gifts';
 
 const Home = () => {
-  const featuredMemberPackages = memberPackages.slice(0, 3);
-  const featuredNonMemberPackages = nonMemberPackages.slice(0, 3);
-
   return (
-    <>
-      {/* <Helmet>
-        <title>Harsha Lucky Tours | Bangalore Travel Lucky Draw | Karnataka Tours</title>
-        <meta name="description" content="Join Harsha Lucky Tours for exciting travel lucky draws! Pay monthly installments and win amazing travel packages across India and abroad. Based in Bangalore, Karnataka." />
-        <meta name="keywords" content="Bangalore travel lucky draw, Karnataka tours, Harsha Lucky Tours, travel packages, lucky draw tours, monthly installment travel, Bangalore tours" />
-      </Helmet> */}
-
-      {/* Hero Section */}
-   <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-  <div className="absolute inset-0">
-    <img 
-      src="https://images.pexels.com/photos/1007426/pexels-photo-1007426.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080" 
-      alt="Travel destination" 
-      className="w-full h-full object-cover"
-    />
-    <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-  </div>
-  
-  <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
-    <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up">
-      Travel Lucky Draw
-      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">
-        Dreams Come True
-      </span>
-    </h1>
-    
-    {/* PRICE HIGHLIGHT ADDED */}
-    <div className="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl px-8 py-4 mb-8 inline-block shadow-lg">
-      <div className="text-3xl md:text-4xl font-bold text-yellow-300 mb-2">Just ₹1000/month</div>
-      <p className="text-lg md:text-xl text-white font-medium">Enter exclusive lucky draws</p>
-    </div>
-    
-    <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
-      Pay monthly installments, enter lucky draws, and win incredible travel experiences across India and abroad!
-    </p>
-    
-    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-      <Link 
-        to="/packages/member" 
-        className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center"
-      >
-        Explore Packages
-        <ArrowRight className="ml-2 h-5 w-5" />
-      </Link>
-      <Link 
-        to="/about" 
-        className="border-2 border-white hover:bg-white hover:text-gray-800 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300"
-      >
-        Learn More
-      </Link>
-    </div>
-  </div>
-</section>
-
-
-      {/* How Lucky Draw Works */}
-    <section className="py-20 bg-gradient-to-b from-white via-blue-50/30 to-teal-50/30">
-  <div className="container mx-auto px-4">
-    {/* SECTION HEADER */}
-    <div className="text-center mb-20">
-      <div className="inline-flex items-center bg-gradient-to-r from-blue-600 to-teal-600 text-white px-6 py-3 rounded-full mb-6">
-        <span className="text-sm mr-2">🎟️</span>
-        <span className="font-medium text-sm">Simple • Transparent • Rewarding</span>
-      </div>
-      <h2 className="text-4xl md:text-5xl font-normal text-gray-800 mb-4">
-        How Our Lucky Draw Works
-      </h2>
-      <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-        Join our 3-step journey from registration to your free dream vacation.
-      </p>
-    </div>
-
-    {/* STEPS GRID */}
-    <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-      {/* STEP 1 */}
-      <div className="text-center group">
-        <div className="bg-gradient-to-br from-blue-100 to-teal-100 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300">
-          <Users className="h-12 w-12 text-blue-600" />
-        </div>
-        <h3 className="text-xl font-normal text-gray-800 mb-3">
-          Step 1 – Become a Member
-        </h3>
-        <p className="text-sm text-gray-600 leading-relaxed max-w-xs mx-auto">
-          Select your desired travel package and register online. Membership ensures access
-          to our monthly lucky draws and guaranteed rewards.
-        </p>
-      </div>
-
-      {/* STEP 2 */}
-      <div className="text-center group">
-        <div className="bg-gradient-to-br from-teal-100 to-green-100 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300">
-          <Clock className="h-12 w-12 text-teal-600" />
-        </div>
-        <h3 className="text-xl font-normal text-gray-800 mb-3">
-          Step 2 – Pay Monthly Installments
-        </h3>
-        <p className="text-sm text-gray-600 leading-relaxed max-w-xs mx-auto">
-          Pay just ₹1000 per month—every payment secures your entry for that month’s 
-          lucky draw and brings you closer to an assured reward.
-        </p>
-      </div>
-
-      {/* STEP 3 */}
-      <div className="text-center group">
-        <div className="bg-gradient-to-br from-green-100 to-yellow-100 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300">
-          <Gift className="h-12 w-12 text-emerald-600" />
-        </div>
-        <h3 className="text-xl font-normal text-gray-800 mb-3">
-          Step 3 – Win or Earn a Reward
-        </h3>
-        <p className="text-sm text-gray-600 leading-relaxed max-w-xs mx-auto">
-          Winners are chosen transparently every month through a live draw. 
-          Didn’t win? Don’t worry—complete your term to receive 
-          <span className="text-emerald-700 font-medium"> guaranteed trips or gifts.</span>
-        </p>
-      </div>
-    </div>
-
-    {/* END MESSAGE */}
-    <div className="text-center mt-20 max-w-3xl mx-auto">
-      <p className="text-base text-gray-700 leading-relaxed mb-6">
-        Every participant is a winner at Harsha Lucky Tours – either through an unforgettable
-        trip or an assured home gift. No luck wasted, only rewards gained.
-      </p>
-      <Link 
-        to="/register"
-        className="inline-flex items-center bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-medium text-sm px-8 py-3 rounded-full transition-all duration-300"
-      >
-        Register Now
-        <ArrowRight className="ml-2 h-4 w-4" />
-      </Link>
-    </div>
-  </div>
-</section>
-
-      {/* About Us Section */}
-   <section className="py-20 bg-gradient-to-br from-blue-50 via-teal-50 to-green-50">
-  <div className="container mx-auto px-4">
-    <div className="grid lg:grid-cols-2 gap-14 items-center">
-      {/* LEFT CONTENT */}
-      <div>
-        <div className="inline-flex items-center bg-gradient-to-r from-blue-600 to-teal-600 text-white px-5 py-2 rounded-full mb-6">
-          <span className="text-sm mr-2">🌍</span>
-          <span className="text-sm font-medium">About Harsha Lucky Tours</span>
-        </div>
-
-        <h2 className="text-4xl md:text-5xl font-normal text-gray-800 mb-6 leading-tight">
-          Turning Your Travel Dreams Into Reality
-        </h2>
-        <p className="text-base text-gray-600 mb-5 leading-relaxed">
-          Welcome to <span className="text-blue-600 font-medium">Harsha Lucky Tours</span>, where
-          wanderlust meets opportunity! ✈️ We are India’s first-of-its-kind{" "}
-          <span className="text-teal-600 font-medium">draw-based travel experience</span> — making
-          luxury vacations possible for everyone.
-        </p>
-        <p className="text-base text-gray-600 mb-5 leading-relaxed">
-          Every month, members participate in a transparent lucky draw that rewards winners
-          with fully sponsored holidays across India and abroad. Even those who don’t win
-          receive guaranteed rewards, including exciting travel plans or premium home gifts.
-        </p>
-        <p className="text-base text-gray-600 mb-8 leading-relaxed">
-          We believe travel should be joyful, accessible, and unforgettable. That’s why our
-          mission is simple — <span className="text-teal-700 font-medium">
-          No one leaves empty-handed.</span> Every member’s loyalty turns into a reward.
-        </p>
-
-        <Link
-          to="/about"
-          className="inline-flex items-center bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-7 py-3 rounded-lg text-sm font-medium transition-all duration-300"
-        >
-          Learn More
-          <ArrowRight className="ml-2 h-4 w-4" />
-        </Link>
-      </div>
-
-      {/* RIGHT STATS GRID */}
-      <div className="grid grid-cols-2 gap-6">
-        <div className="bg-white border border-gray-100 p-6 rounded-xl hover:bg-blue-50/40 transition-all duration-200">
-          <div className="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
-            <Users className="h-6 w-6 text-blue-600" />
-          </div>
-          <h3 className="text-lg text-gray-800 mb-1">500+ Active Members</h3>
-          <p className="text-sm text-gray-600 leading-snug">
-            Thriving community of travelers and dreamers who joined our draw.
-          </p>
-        </div>
-
-        <div className="bg-white border border-gray-100 p-6 rounded-xl hover:bg-teal-50/40 transition-all duration-200">
-          <div className="bg-teal-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
-            <MapPin className="h-6 w-6 text-teal-600" />
-          </div>
-          <h3 className="text-lg text-gray-800 mb-1">50+ Dream Destinations</h3>
-          <p className="text-sm text-gray-600 leading-snug">
-            Breathtaking places across India & international getaways.
-          </p>
-        </div>
-
-        <div className="bg-white border border-gray-100 p-6 rounded-xl hover:bg-green-50/40 transition-all duration-200">
-          <div className="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
-            <Gift className="h-6 w-6 text-green-600" />
-          </div>
-          <h3 className="text-lg text-gray-800 mb-1">100+ Lucky Winners</h3>
-          <p className="text-sm text-gray-600 leading-snug">
-            Over a hundred winners have already lived their dream vacations.
-          </p>
-        </div>
-
-        <div className="bg-white border border-gray-100 p-6 rounded-xl hover:bg-yellow-50/40 transition-all duration-200">
-          <div className="bg-yellow-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
-            <Star className="h-6 w-6 text-yellow-600" />
-          </div>
-          <h3 className="text-lg text-gray-800 mb-1">4.9 / 5 Satisfaction</h3>
-          <p className="text-sm text-gray-600 leading-snug">
-            Trusted by our members for transparency, support, and excitement!
-          </p>
-        </div>
-      </div>
-    </div>
-
-    {/* CTA FOOTER */}
-    <div className="text-center mt-20">
-      <p className="text-base text-gray-700 mb-5 leading-relaxed">
-        Join us today and make every month an opportunity for adventure. 
-        Because at <span className="font-medium text-blue-600">Harsha Lucky Tours</span>, 
-        <span className="text-teal-700 font-medium"> everyone wins!</span>
-      </p>
-      <Link
-        to="/register"
-        className="inline-flex items-center bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-medium text-sm px-8 py-3 rounded-full transition-all duration-300"
-      >
-        Become a Member
-        <ArrowRight className="ml-2 h-4 w-4" />
-      </Link>
-    </div>
-  </div>
-</section>
-
-
-      {/* Featured Packages */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-         <div className="text-center mb-20">
-    <div className="inline-flex items-center bg-gradient-to-r from-blue-600 to-teal-600 text-white px-6 py-3 rounded-full mb-6 mx-auto max-w-max">
-      <span className="text-sm mr-2">🎯</span>
-      <span className="font-medium">Dream Scheme by Harsha Lucky Tours</span>
-    </div>
-    <h2 className="text-4xl md:text-5xl font-normal text-gray-800 mb-4 leading-tight">
-      Win Dream Vacations or Premium Gifts
-    </h2>
-    <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-      Just ₹1000/month unlocks luxury tours for your family OR valuable home gifts. 
-      Every member wins - either through lucky draw or our guaranteed reward system!
-    </p>
-  </div>
-
-  {/* MEMBER PACKAGES */}
-  <div className="mb-20">
-    <div className="flex justify-between items-center mb-12">
-      <div>
-        <h3 className="text-2xl text-gray-800 font-normal mb-1">Live Lucky Draw Packages</h3>
-        <p className="text-sm text-gray-600">Join now and participate in monthly draws</p>
-      </div>
-      <Link 
-        to="/member/packages" 
-        className="text-blue-600 hover:text-blue-700 text-sm flex items-center font-medium"
-      >
-        View All Packages
-        <ArrowRight className="ml-1 h-4 w-4" />
-      </Link>
-    </div>
-    <Pack/>
-  </div>
-
-          {/* Non-Member Packages */}
-        <div>
-         <div className="max-w-6xl mx-auto px-4 py-12">
-  {/* Header */}
-  <div className="text-center mb-16">
-    <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
-      Guaranteed Rewards for Loyal Members
-    </h2>
-    <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-      Complete your Dream Scheme without winning? Choose any premium tour OR home gift.
-    </p>
-  </div>
-
-  {/* Tour Packages */}
-  <section className="mb-16">
-    <div className="flex justify-between items-center mb-8">
-      <h3 className="text-2xl font-medium text-gray-900">Premium Tour Options</h3>
-      <Link to="/non-member/packages" className="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center">
-        View All <ArrowRight className="ml-1 h-4 w-4" />
-      </Link>
-    </div>
-    
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {nonMemberPackages.map((pkg) => (
-        <div key={pkg.id} className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-blue-200 hover:bg-blue-50/50 transition-all duration-300">
-          <div className="h-48 w-full rounded-xl overflow-hidden mb-6">
-            <img 
-              src={pkg.images[0]} 
-              alt={pkg.name}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-          
-          <h4 className="text-xl font-medium text-gray-900 mb-3 line-clamp-2">{pkg.name}</h4>
-          <p className="text-gray-600 text-sm mb-4 line-clamp-2">{pkg.description}</p>
-          
-          <div className="space-y-3 mb-6">
-            {/* <div className="flex items-center text-sm">
-              <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-              {pkg.duration}
-            </div> */}
-            <div className="flex flex-wrap gap-2">
-              {pkg.inclusions.slice(0,3).map((item, i) => (
-                <span key={i} className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full">
-                  {item}
-                </span>
-              ))}
+    <div className="bg-slate-50 font-sans antialiased">
+      
+      {/* 1. HERO SECTION - Ultra Modern Luxury */}
+     <section className="relative h-[450px] md:h-[600px] flex items-center overflow-hidden">
+           <div className="absolute inset-0 z-0">
+             <img 
+               src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80" 
+               className="w-full h-full object-cover" 
+               alt="Luxury Resort" 
+             />
+             <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent"></div>
+           </div>
+           <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-8 w-full">
+             <div className="max-w-2xl space-y-4 md:space-y-6">
+               <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#138cca] text-white rounded-md">
+                 <Star className="w-3 h-3 fill-current" />
+                 <span className="text-[10px] font-bold uppercase tracking-widest">Official Membership Circle</span>
+               </div>
+               <h1 className="text-3xl md:text-6xl font-bold text-white leading-tight">Luxury Travel <br /><span className="text-[#138cca]">For Every Family.</span></h1>
+               <p className="text-sm md:text-lg text-slate-300 leading-relaxed max-w-lg">
+                 Harsha Lucky Tours is Bangalore's most trusted travel collective. By contributing just ₹1000 monthly, you join an elite circle of 500+ families enjoying 5-star hospitality without the financial burden.
+               </p>
+               <div className="flex flex-wrap gap-3 pt-2">
+                 <Link to="/register" className="px-5 py-2.5 md:px-8 md:py-4 bg-[#138cca] text-white text-sm font-bold rounded-lg hover:bg-sky-700 transition-all flex items-center gap-2 shadow-lg shadow-sky-500/20">
+                   Join Membership <ArrowRight className="w-4 h-4" />
+                 </Link>
+               </div>
+             </div>
+           </div>
+         </section>
+         <section className="bg-slate-900 border-y border-white/10 py-5">
+        <div className="max-w-7xl mx-auto px-5 md:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+            <div className="flex items-center gap-4 border-b md:border-b-0 md:border-r border-white/10 pb-4 md:pb-0">
+              <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center animate-pulse shrink-0"><Youtube className="w-5 h-5 text-white" /></div>
+              <div>
+                <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Next Live Draw</p>
+                <p className="text-white text-sm font-bold">28th of every Month</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 border-b md:border-b-0 md:border-r border-white/10 pb-4 md:pb-0">
+              <Users className="w-6 h-6 text-[#138cca] shrink-0" />
+              <div>
+                <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Community Size</p>
+                <p className="text-white text-sm font-bold">HappyActive Members</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <Trophy className="w-6 h-6 text-amber-500 shrink-0" />
+              <div>
+                <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest"> Rewards</p>
+                <p className="text-white text-sm font-bold">Tours or  Gifts or Silver/Golds</p>
+              </div>
             </div>
           </div>
-          
-          {/* <button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white text-sm font-medium py-3 px-4 rounded-xl transition-all duration-300">
-            Select Tour
-          </button> */}
-        </div>
-      ))}
-    </div>
-  </section>
-
-  {/* Gift Catalogue */}
-  <section>
-    <div className="flex justify-between items-center mb-8">
-      <h3 className="text-2xl font-medium text-gray-900">Premium Home Gifts</h3>
-      <span className="text-sm text-gray-500">12 options - doorstep delivery</span>
-    </div>
-    
-    <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-      {giftCatalogue.map((gift) => (
-        <div key={gift.id} className="bg-white border border-gray-200 rounded-xl p-4 hover:border-blue-200 hover:bg-blue-50/30 transition-all duration-300 group">
-          <div className="h-32 w-full rounded-lg overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
-            <img 
-              src={gift.image} 
-              alt={gift.name}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <h5 className="font-medium text-sm text-gray-900 mb-2 line-clamp-1">{gift.name}</h5>
-          <p className="text-xs text-gray-600 mb-4 line-clamp-1">{gift.benefit}</p>
-          {/* <button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white text-xs font-medium py-2 px-3 rounded-lg transition-all duration-300">
-            Choose Gift
-          </button> */}
-        </div>
-      ))}
-    </div>
-  </section>
-
-</div>
-
-
-
-
-</div>
-
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4">
+      {/* 2. HOW IT WORKS - Step-by-Step Clarity */}
+      <section className="py-24 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-              Why Choose Harsha Lucky Tours
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We make dream vacations accessible and exciting for everyone
-            </p>
+            <span className="text-blue-600 font-bold tracking-tighter text-sm uppercase px-3 py-1 bg-blue-50 rounded-full">The Roadmap</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mt-4">Simple. Transparent. Rewarding.</h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 relative">
+            {/* Connection Line (Desktop) */}
+            <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 -z-0"></div>
+
+            {[
+              { 
+                icon: <Users className="text-blue-600 h-8 w-8" />, 
+                title: "Become a Member", 
+                desc: "Choose your travel plan and complete a quick online registration to join the Harsha Lucky Tours family." 
+              },
+              { 
+                icon: <Clock className="text-teal-600 h-8 w-8" />, 
+                title: "Pay Monthly ₹1000", 
+                desc: "Each on-time installment adds your name into that month's lucky draw. No heavy upfront costs." 
+              },
+              { 
+                icon: <Award className="text-amber-500 h-8 w-8" />, 
+                title: "Win or Get Rewarded", 
+                desc: "Win in the live draw or complete your term to receive assured luxury trips or premium home gifts." 
+              }
+            ].map((step, idx) => (
+              <div key={idx} className="relative z-10 bg-white p-8 rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 hover:-translate-y-2 transition-transform">
+                <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
+                  {step.icon}
+                </div>
+                <div className="absolute top-8 right-8 text-4xl font-black text-slate-100">0{idx+1}</div>
+                <h3 className="text-xl font-bold text-slate-900 mb-4">{step.title}</h3>
+                <p className="text-slate-600 leading-relaxed text-sm">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. ABOUT US - Content Rich Branding */}
+      <section className="py-24 bg-slate-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-blue-600 font-bold uppercase tracking-widest text-xs mb-4">Established Success</h2>
+                <h3 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">Monthly Savings Meet <br/> Dream Vacations</h3>
+                <p className="mt-6 text-slate-600 text-lg leading-relaxed">
+                  Harsha Lucky Tours was founded on the belief that luxury travel shouldn't be reserved for the elite. 
+                  Since 2024, we've successfully helped hundreds of families travel the world through a transparent, 
+                  community-driven savings model.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                {[
+                  { icon: <ShieldCheck className="text-emerald-500" />, title: "100% Verified Draws", desc: "Our lucky draws are conducted live with member presence." },
+                  { icon: <Globe className="text-blue-500" />, title: "50+ Global Destinations", desc: "From local hidden gems to international paradises." },
+                  { icon: <Heart className="text-rose-500" />, title: "Zero Loss Guarantee", desc: "If you don't win a draw, you get a premium guaranteed gift." }
+                ].map((feature, i) => (
+                  <div key={i} className="flex gap-4 p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+                    <div className="mt-1">{feature.icon}</div>
+                    <div>
+                      <h4 className="font-bold text-slate-900">{feature.title}</h4>
+                      <p className="text-sm text-slate-500">{feature.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <Link to="/about" className="inline-flex items-center text-blue-600 font-bold hover:gap-2 transition-all">
+                Read our full story <ChevronRight className="h-5 w-5" />
+              </Link>
+            </div>
+
+            <div className="relative">
+              <div className="absolute -top-10 -right-10 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-teal-400/20 rounded-full blur-3xl"></div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600" className="rounded-3xl shadow-lg mt-12 hover:scale-105 transition-transform" alt="Travelers" />
+                <div className="space-y-4">
+                  <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400" className="rounded-3xl shadow-lg hover:scale-105 transition-transform" alt="Beach" />
+                  <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400" className="rounded-3xl shadow-lg hover:scale-105 transition-transform" alt="Mountains" />
+                </div>
+              </div>
+              
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-3xl shadow-2xl text-center border border-blue-50 min-w-[200px]">
+                <div className="text-4xl font-black text-blue-600">100+</div>
+                <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Verified Winners</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. LIVE PACKAGES (MEMBER) */}
+      <section className="py-10 bg-white">
+        <div className="max-w-7xl mx-auto  sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            {/* <div>
+              <h2 className="text-blue-600 font-bold tracking-widest uppercase text-xs mb-3">Active Draws</h2>
+              <h3 className="text-3xl md:text-4xl font-bold text-slate-900">Live Membership Schemes</h3>
+            </div> */}
+           
+          </div>
+          <Pack />
+        </div>
+      </section>
+
+      {/* 5. TOUR REWARDS (NON-MEMBER) */}
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Guaranteed Tour Rewards</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">Available for all members who complete their installment terms.</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Shield className="h-8 w-8 text-blue-600" />
+            {nonMemberPackages.slice(0, 6).map((pkg, i) => (
+              <div key={i} className="group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-md hover:shadow-xl transition-all">
+                <div className="h-48 relative overflow-hidden">
+                  <img 
+                    src={pkg.images?.[0] || 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500'} 
+                    alt={pkg.name} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                  />
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold uppercase text-blue-600">
+                    Assured Package
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h4 className="text-xl font-bold text-slate-900 mb-2">{pkg.name}</h4>
+                  <p className="text-sm text-slate-500 line-clamp-2 mb-4">{pkg.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {pkg.inclusions?.slice(0, 3).map((inc, idx) => (
+                      <span key={idx} className="bg-blue-50 text-blue-600 text-[10px] px-2 py-1 rounded-lg font-bold">
+                        {inc}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Transparent Process</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Our lucky draw process is completely transparent with live draws and verified results. No hidden charges or conditions.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Clock className="h-8 w-8 text-teal-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Affordable Monthly Plans</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Pay in small monthly installments instead of huge upfront costs. Make your dream vacation financially manageable.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Star className="h-8 w-8 text-green-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Quality Packages</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Carefully curated travel packages with premium accommodations, guided tours, and all major inclusions covered.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="h-8 w-8 text-purple-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Expert Support</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Dedicated customer support team to assist you throughout your journey from registration to your travel experience.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <MapPin className="h-8 w-8 text-orange-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Multiple Destinations</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Wide variety of destinations across India and international locations to suit every traveler's preferences.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Gift className="h-8 w-8 text-red-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Surprise & Excitement</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Experience the thrill of winning and the joy of unexpected travel adventures. Every month brings new possibilities.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-teal-600 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Start Your Adventure?
-          </h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
-            Join thousands of happy travelers who have made their dream vacations come true through our lucky draw system. 
-            Your next adventure is just one registration away!
+      {/* 6. GIFT CATALOGUE - Modern Grid */}
+      <section className="py-24 bg-slate-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">Premium Home Gifts</h2>
+          <p className="text-slate-400 max-w-2xl mx-auto mb-16">
+            Don't want the tour? Exchange your completion reward for high-value home electronics and luxury items.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link 
-              to="/contact" 
-              className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 flex items-center"
-            >
-              <Phone className="mr-2 h-5 w-5" />
-              Contact Us Now
-            </Link>
-            <Link 
-              to="/packages/member" 
-              className="border-2 border-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300"
-            >
-              View All Packages
-            </Link>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            {giftCatalogue.slice(0, 12).map((gift, i) => (
+              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all group">
+                <div className="h-24 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <img src={gift.image} alt={gift.name} className="max-h-full object-contain filter brightness-110" />
+                </div>
+                <h5 className="text-xs font-bold text-slate-200 uppercase tracking-wider">{gift.name}</h5>
+                <p className="text-[10px] text-teal-400 mt-2 font-medium">{gift.benefit}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
-    </>
+
+      {/* 7. WHY CHOOSE US - Feature Grid */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { icon: <Shield className="text-blue-600" />, title: "Transparent Draws", desc: "Live results you can trust with verified third-party auditing." },
+              { icon: <IndianRupee className="text-emerald-600" />, title: "Fixed ₹1000/mo", desc: "No hidden charges, no inflation. One simple price for everyone." },
+              { icon: <Star className="text-amber-500" />, title: "Premium Stays", desc: "We partner exclusively with 4 and 5-star properties across India." },
+              { icon: <HelpCircle className="text-indigo-600" />, title: "24/7 Concierge", desc: "A dedicated travel manager for every winner from start to finish." },
+              { icon: <MapPin className="text-rose-500" />, title: "50+ Destinations", desc: "From Maldives beaches to Shimla snow - we cover it all." },
+              { icon: <CheckCircle className="text-teal-600" />, title: "No Loss Policy", desc: "Everyone gets back value through guaranteed rewards or gifts." }
+            ].map((f, i) => (
+              <div key={i} className="p-8 rounded-3xl border border-slate-100 hover:shadow-2xl transition-all group">
+                <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">{f.icon}</div>
+                <h4 className="text-lg font-bold text-slate-900 mb-2">{f.title}</h4>
+                <p className="text-sm text-slate-600 leading-relaxed">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+     
+    </div>
   );
 };
 

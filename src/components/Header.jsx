@@ -1,302 +1,341 @@
 // src/components/Header.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.png';
 import {
-  Menu, X, Plane, User, LogOut, Home, FileText, MessageCircle,
-  ChevronRight, Shield, ChevronDown, Package, Users, CreditCard,
-  Bell, Settings,
-  VideoIcon
+  Menu, X, Home, FileText, MessageCircle, ChevronRight, Shield,
+  ChevronDown, Package, User, LogOut, CreditCard, Bell, Settings,
+  Users, Gift
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 const Header = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isPackagesOpen, setIsPackagesOpen] = useState(false);
+  const userMenuRef = useRef(null);
   const location = useLocation();
   const { user, logout, isAuthenticated, isAdmin } = useAuth();
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) => location.pathname === path || location.pathname.startsWith(path);
 
-  // Close menus on route change
   useEffect(() => {
-    setIsDrawerOpen(false);
+    setIsMobileMenuOpen(false);
     setIsUserMenuOpen(false);
+    setIsPackagesOpen(false);
   }, [location.pathname]);
 
-  // Close user menu when clicking outside
   useEffect(() => {
-    if (!isUserMenuOpen) return;
-
-    const handleClick = () => setIsUserMenuOpen(false);
-    document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
-  }, [isUserMenuOpen]);
-
-  const toggleUserMenu = (e) => {
-    e.stopPropagation();
-    setIsUserMenuOpen(prev => !prev);
-  };
+    const handleClickOutside = (event) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+        setIsUserMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const publicLinks = [
     { to: '/', label: 'Home', icon: Home },
-    { to: '/about', label: 'About Us', icon: FileText },
-    { to: '/contact', label: 'Contact Us', icon: MessageCircle },
-    { to: '/sitemap', label: 'Sitemap', icon: ChevronRight },
-    { to: '/privacy-policy', label: 'Privacy Policy', icon: Shield },
+    { to: '/about', label: 'About', icon: FileText },
+    { to: '/member/packages', label: 'Packages', icon: Package },
+    { to: '/non-member/packages', label: 'Other Packages', icon: Package },
+    { to: '/contact', label: 'Contact', icon: MessageCircle },
   ];
 
   const userLinks = [
     { to: '/dashboard', label: 'Dashboard', icon: Package },
     { to: '/profile', label: 'Profile', icon: User },
-    { to: '/lucky-draw', label: 'Lucky Draw', icon: Bell },
-    { to: '/live', label: 'Live Draws', icon: VideoIcon },
+    { to: '/payments', label: 'Payments', icon: CreditCard },
+    { to: '/draws', label: 'My Draws', icon: Bell },
   ];
 
   const adminLinks = [
     { to: '/admin/dashboard', label: 'Dashboard', icon: Settings },
-    { to: '/admin/users', label: 'Users', icon: Users },
     { to: '/admin/packages', label: 'Packages', icon: Package },
+    { to: '/admin/users', label: 'Users', icon: Users },
     { to: '/admin/payments', label: 'Payments', icon: CreditCard },
-    { to: '/admin/pending', label: 'Pending Payments', icon: FileText },
-    { to: '/admin/messages', label: 'Messages', icon: MessageCircle },
-    { to: '/admin/profile', label: 'Admin Profile', icon: User },
   ];
 
   return (
     <>
-      {/* ====================== HEADER ====================== */}
-      <header className="bg-white shadow-md sticky top-0 z-50">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center h-20">
-
-            {/* LOGO */}
-            <Link to="/" className="flex items-center space-x-3">
-              {/* <div className="bg-gradient-to-r from-blue-600 to-teal-600 p-2 rounded-lg">
-                <Plane className="h-8 w-8 text-white" />
+      <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 lg:h-20">
+            <Link to="/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+              <img src={logo} alt="Harsha Lucky Tours" className="h-10 w-auto" />
+              <div className="hidden sm:block">
+                <h1 className="text-lg font-medium text-slate-900 leading-tight">Harsha Lucky Tours</h1>
+                <p className="text-xs text-slate-500 tracking-wide">Travel Lucky Draw</p>
               </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-800">Harsha Lucky Tours</h1>
-                <p className="text-xs text-gray-600">Travel Lucky Draw</p>
-              </div> */}
-              <img src={logo} alt="harsha lucky tours"  width={120}/>
             </Link>
 
-            {/* DESKTOP NAV */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            <nav className="hidden lg:flex items-center gap-8">
               {publicLinks.map(({ to, label }) => (
                 <Link
                   key={to}
                   to={to}
-                  className={`font-medium transition ${
-                    isActive(to) ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
+                  className={`text-sm font-medium px-2 py-1 rounded-md transition-all duration-200 relative ${
+                    isActive(to)
+                      ? 'text-sky-600 bg-sky-50 border-b-2 border-sky-600'
+                      : 'text-slate-700 hover:text-sky-600 hover:bg-sky-50'
                   }`}
                 >
                   {label}
                 </Link>
               ))}
 
-              {/* Packages Dropdown */}
-              <div className="relative group">
-                <button className="flex items-center space-x-1 font-medium text-gray-700 hover:text-blue-600 transition">
-                  <span>Packages</span>
-                  <ChevronDown className="h-4 w-4" />
+              <div className="relative">
+                <button
+                  className="flex items-center gap-1.5 text-sm font-medium text-slate-700 hover:text-sky-600 transition-all duration-200 px-2 py-1 rounded-md hover:bg-sky-50 group"
+                  onClick={() => setIsPackagesOpen(!isPackagesOpen)}
+                >
+                  Packages
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isPackagesOpen ? 'rotate-180' : ''}`} />
                 </button>
-                <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-20">
-                  <Link
-                    to="/member/packages"
-                    className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition rounded-t-lg"
-                  >
-                   Lucky Draw Member
-                  </Link>
-                  <Link
-                    to="/non-member/packages"
-                    className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition rounded-b-lg"
-                  >
-                    Other Members
-                  </Link>
-                </div>
+                {isPackagesOpen && (
+                  <div className="absolute top-full left-0 mt-1.5 w-56 bg-white border border-slate-200 rounded-xl shadow-sm z-30">
+                    <Link
+                      to="/member/packages"
+                      className="block px-4 py-3 text-sm text-slate-700 hover:bg-sky-50 hover:text-sky-600 rounded-t-xl transition-colors"
+                    >
+                      Lucky Draw Packages
+                    </Link>
+                    <Link
+                      to="/non-member/packages"
+                      className="block px-4 py-3 text-sm text-slate-700 hover:bg-sky-50 hover:text-sky-600 rounded-b-xl transition-colors"
+                    >
+                      Reward Packages
+                    </Link>
+                  </div>
+                )}
               </div>
+            </nav>
 
-              {/* USER MENU (DESKTOP) */}
+            <div className="flex items-center gap-3">
               {isAuthenticated ? (
-                <div className="relative">
-                  <button
-                    onClick={toggleUserMenu}
-                    className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition font-medium"
-                  >
-                    <User className="h-5 w-5" />
-                    <span>{user?.name}</span>
-                    <ChevronDown className={`h-4 w-4 transition-transform ${isUserMenuOpen ? 'rotate-180' : ''}`} />
-                  </button>
+                <>
+                  {/* <Link to="/notifications" className="relative p-2 text-slate-600 hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-all">
+                    <Bell className="w-5 h-5" />
+                    <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] rounded-full flex items-center justify-center font-medium">3</span>
+                  </Link> */}
 
-                  {/* Dropdown */}
-                  {isUserMenuOpen && (
-                    <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-lg shadow-lg border overflow-hidden z-30">
-                      <p className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50">
-                        {isAdmin ? 'Admin Panel' : 'My Account'}
-                      </p>
-                      {(isAdmin ? adminLinks : userLinks).map(({ to, label, icon: Icon }) => (
-                        <Link
-                          key={to}
-                          to={to}
-                          onClick={() => setIsUserMenuOpen(false)}
-                          className={`flex items-center space-x-3 px-4 py-2.5 text-sm font-medium transition ${
-                            isActive(to)
-                              ? 'bg-blue-50 text-blue-600'
-                              : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600'
-                          }`}
-                        >
-                          <Icon className="h-5 w-5" />
-                          <span>{label}</span>
-                        </Link>
-                      ))}
-                      <button
-                        onClick={() => {
-                          logout();
-                          setIsUserMenuOpen(false);
-                        }}
-                        className="w-full flex items-center space-x-3 px-4 py-2.5 text-sm font-medium text-red-600 hover:bg-red-50 transition"
-                      >
-                        <LogOut className="h-5 w-5" />
-                        <span>Logout</span>
-                      </button>
-                    </div>
-                  )}
-                </div>
+                  <div className="relative" ref={userMenuRef}>
+                    <button
+                      onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                      className="flex items-center gap-2 text-sm font-medium text-slate-700 hover:text-sky-600 transition-all p-2 hover:bg-sky-50 rounded-lg"
+                    >
+                      <div className="w-8 h-8 bg-gradient-to-br from-sky-100 to-teal-100 rounded-full flex justify-center items-center">
+                        <User className="w-4 h-4 text-sky-600" />
+                      </div>
+                      <span className="hidden lg:block max-w-[120px] truncate">{user?.name}</span>
+                      <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isUserMenuOpen ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    {isUserMenuOpen && (
+                      <div className="absolute right-0 top-full mt-2 w-64 bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden z-40">
+                        <div className="p-4 border-b border-slate-100 bg-slate-50">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-gradient-to-br from-sky-100 to-teal-100 rounded-full flex items-center justify-center">
+                              <User className="w-5 h-5 text-sky-600" />
+                            </div>
+                            <div className="min-w-0">
+                              <p className="font-medium text-sm text-slate-900 truncate">{user?.name}</p>
+                              <p className="text-xs text-slate-500">{user?.email}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="py-1">
+                          {(isAdmin ? adminLinks : userLinks).map(({ to, label, icon: Icon }) => (
+                            <Link
+                              key={to}
+                              to={to}
+                              onClick={() => setIsUserMenuOpen(false)}
+                              className={`flex items-center gap-3 px-4 py-3 text-sm font-medium transition-all ${
+                                isActive(to)
+                                  ? 'bg-sky-50 text-sky-600 border-sky-200'
+                                  : 'text-slate-700 hover:bg-slate-50 hover:text-sky-600'
+                              }`}
+                            >
+                              <Icon className="w-4 h-4 flex-shrink-0" />
+                              <span className="truncate">{label}</span>
+                            </Link>
+                          ))}
+                        </div>
+                        <div className="border-t border-slate-100">
+                          <button
+                            onClick={() => {
+                              logout();
+                              setIsUserMenuOpen(false);
+                            }}
+                            className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 transition-all"
+                          >
+                            <LogOut className="w-4 h-4" />
+                            <span>Sign out</span>
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </>
               ) : (
-                <div className="flex items-center space-x-4">
-                  <Link to="/login" className="text-gray-700 hover:text-blue-600 font-medium transition">
-                    Login
+                <div className="flex items-center gap-2 lg:gap-3">
+                  <Link
+                    to="/login"
+                    className="text-sm font-medium text-slate-700 hover:text-sky-600 px-4 py-2 hover:bg-sky-50 rounded-lg transition-all lg:px-5"
+                  >
+                    Sign in
                   </Link>
                   <Link
                     to="/register"
-                    className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-4 py-2 rounded-lg font-medium transition"
+                    className="text-sm font-semibold text-white bg-sky-600 hover:bg-sky-700 px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition-all lg:px-6 lg:py-2.5"
                   >
-                    Register
+                    Join Now
                   </Link>
                 </div>
               )}
-            </nav>
 
-            {/* MOBILE TOGGLE */}
-            <button
-              onClick={() => setIsDrawerOpen(true)}
-              className="lg:hidden p-2 text-gray-700 hover:text-blue-600"
-            >
-              <Menu className="h-6 w-6" />
-            </button>
+              <button
+                onClick={() => setIsMobileMenuOpen(true)}
+                className="lg:hidden p-1.5 text-slate-700 hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-all"
+                aria-label="Open menu"
+              >
+                <Menu className="w-6 h-6" />
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
-      {/* ====================== MOBILE DRAWER ====================== */}
-      {isDrawerOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-black bg-opacity-50" onClick={() => setIsDrawerOpen(false)} />
-          <div className="absolute left-0 top-0 h-full w-72 bg-white shadow-2xl">
-            <div className="flex flex-col h-full">
-              <div className="p-5 border-b flex items-center justify-between">
-                <Link to="/" className="flex items-center space-x-2" onClick={() => setIsDrawerOpen(false)}>
-                  <div className="bg-gradient-to-r from-blue-600 to-teal-600 p-2 rounded-lg">
-                    <Plane className="h-7 w-7 text-white" />
-                  </div>
-                  <div>
-                    <h2 className="text-lg font-bold text-gray-800">Harsha Lucky</h2>
-                    <p className="text-xs text-gray-600">Travel Lucky Draw</p>
-                  </div>
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 bg-slate-900/30 backdrop-blur-sm z-[9999]">
+         <div 
+      className="fixed overflow-auto right-0 top-0 h-full w-80 bg-white border-l border-slate-200 shadow-2xl z-[10000] transform translate-x-full transition-transform duration-300 ease-in-out"
+      style={{ transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(100%)' }}
+    >
+            <div className="flex items-center justify-between p-5 border-b border-slate-100">
+              <Link to="/" className="flex items-center gap-3" onClick={() => setIsMobileMenuOpen(false)}>
+                <img src={logo} alt="Logo" className="h-9 w-auto" />
+                <div>
+                  <h2 className="text-lg font-medium text-slate-900">Harsha Lucky Tours</h2>
+                  <p className="text-xs text-slate-500">Lucky Travel Scheme</p>
+                </div>
+              </Link>
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-1.5 text-slate-500 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-all"
+                aria-label="Close menu"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-4 space-y-2">
+              {publicLinks.map(({ to, label, icon: Icon }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center gap-3 p-3 rounded-xl text-base font-medium transition-all ${
+                    isActive(to)
+                      ? 'bg-sky-50 text-sky-700 border border-sky-200'
+                      : 'text-slate-700 hover:bg-slate-50 hover:text-sky-700'
+                  }`}
+                >
+                  <Icon className="w-5 h-5 flex-shrink-0" />
+                  <span>{label}</span>
                 </Link>
-                <button onClick={() => setIsDrawerOpen(false)} className="p-1 text-gray-500 hover:text-gray-700">
-                  <X className="h-5 w-5" />
-                </button>
+              ))}
+
+              <div>
+                <span className="block px-3 py-1 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Packages</span>
+                <Link
+                  to="/member/packages"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center gap-3 p-3 rounded-xl text-base font-medium transition-all ${
+                    isActive('/member/packages')
+                      ? 'bg-sky-50 text-sky-700 border border-sky-200'
+                      : 'text-slate-700 hover:bg-slate-50 hover:text-sky-700'
+                  }`}
+                >
+                  <Package className="w-5 h-5" />
+                  <span>Lucky Draw</span>
+                </Link>
+                <Link
+                  to="/non-member/packages"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center gap-3 p-3 rounded-xl text-base font-medium transition-all ${
+                    isActive('/non-member/packages')
+                      ? 'bg-sky-50 text-sky-700 border border-sky-200'
+                      : 'text-slate-700 hover:bg-slate-50 hover:text-sky-700'
+                  }`}
+                >
+                  <Gift className="w-5 h-5" />
+                  <span>Rewards</span>
+                </Link>
               </div>
 
-              <div className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
-                {publicLinks.map(({ to, label, icon: Icon }) => (
-                  <Link
-                    key={to}
-                    to={to}
-                    onClick={() => setIsDrawerOpen(false)}
-                    className={`flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition ${
-                      isActive(to) ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600'
-                    }`}
+              {isAuthenticated ? (
+                <div className="pt-4 mt-4 border-t border-slate-100 space-y-2">
+                  <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl">
+                    <div className="w-10 h-10 bg-sky-100 rounded-full flex items-center justify-center">
+                      <User className="w-5 h-5 text-sky-600" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-medium text-base text-slate-900 truncate">{user?.name}</p>
+                      <p className="text-sm text-slate-500 truncate">{user?.email}</p>
+                    </div>
+                  </div>
+                  {(isAdmin ? adminLinks : userLinks).map(({ to, label, icon: Icon }) => (
+                    <Link
+                      key={to}
+                      to={to}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`flex items-center gap-3 p-3 rounded-xl text-base font-medium transition-all ${
+                        isActive(to)
+                          ? 'bg-sky-50 text-sky-700 border border-sky-200'
+                          : 'text-slate-700 hover:bg-slate-50 hover:text-sky-700'
+                      }`}
+                    >
+                      <Icon className="w-5 h-5 flex-shrink-0" />
+                      <span>{label}</span>
+                    </Link>
+                  ))}
+                  <button
+                    onClick={() => {
+                      logout();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="w-full flex items-center gap-3 p-3 rounded-xl text-base font-medium text-red-600 hover:bg-red-50 transition-all"
                   >
-                    <Icon className="h-5 w-5" />
-                    <span>{label}</span>
+                    <LogOut className="w-5 h-5" />
+                    <span>Sign Out</span>
+                  </button>
+                </div>
+              ) : (
+                <div className="pt-4 mt-4 border-t border-slate-100 space-y-3">
+                  <Link
+                    to="/login"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block w-full text-center px-8 py-3 border-2 border-slate-200 text-slate-700 rounded-xl text-base font-medium hover:border-sky-300 hover:text-sky-700 hover:bg-sky-50 transition-all"
+                  >
+                    Sign In
                   </Link>
-                ))}
-
-                <div className="pt-2">
-                  <p className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Packages</p>
-                  <Link to="/member/packages" onClick={() => setIsDrawerOpen(false)} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded">
-                    Member Packages
-                  </Link>
-                  <Link to="/non-member/packages" onClick={() => setIsDrawerOpen(false)} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded">
-                    Non-Member Packages
+                  <Link
+                    to="/register"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block w-full text-center px-8 py-3 bg-gradient-to-r from-sky-600 to-emerald-600 hover:from-sky-700 hover:to-emerald-700 text-white rounded-xl text-base font-semibold shadow-sm hover:shadow-md transition-all"
+                  >
+                    Join Now
                   </Link>
                 </div>
-
-                {isAuthenticated && (
-                  <div className="pt-4 mt-4 border-t">
-                    <p className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                      {isAdmin ? 'Admin Panel' : 'My Account'}
-                    </p>
-                    {(isAdmin ? adminLinks : userLinks).map(({ to, label, icon: Icon }) => (
-                      <Link
-                        key={to}
-                        to={to}
-                        onClick={() => setIsDrawerOpen(false)}
-                        className={`flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition ${
-                          isActive(to) ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600'
-                        }`}
-                      >
-                        <Icon className="h-5 w-5" />
-                        <span>{label}</span>
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <div className="p-4 border-t bg-gray-50">
-                {isAuthenticated ? (
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2 text-sm text-gray-600 mb-3">
-                      <User className="h-4 w-4" />
-                      <span className="font-medium">{user?.name}</span>
-                    </div>
-                    <button
-                      onClick={() => {
-                        logout();
-                        setIsDrawerOpen(false);
-                      }}
-                      className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-medium transition"
-                    >
-                      <LogOut className="h-4 w-4" />
-                      <span>Logout</span>
-                    </button>
-                  </div>
-                ) : (
-                  <div className="space-y-2">
-                    <Link
-                      to="/login"
-                      onClick={() => setIsDrawerOpen(false)}
-                      className="block w-full text-center px-4 py-2 border border-blue-600 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-50 transition"
-                    >
-                      Login
-                    </Link>
-                    <Link
-                      to="/register"
-                      onClick={() => setIsDrawerOpen(false)}
-                      className="block w-full text-center px-4 py-2 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white rounded-lg text-sm font-medium transition"
-                    >
-                      Register
-                    </Link>
-                  </div>
-                )}
-              </div>
+              )}
             </div>
           </div>
+          <div 
+            className="lg:hidden fixed inset-0 z-40 bg-slate-900/20 backdrop-blur-sm"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
         </div>
       )}
     </>

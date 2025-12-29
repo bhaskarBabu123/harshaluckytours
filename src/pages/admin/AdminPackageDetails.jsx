@@ -8,7 +8,7 @@ import Modal from '../../components/Modal';
 import { 
   Package, Video, Crown, Calendar, Users, MapPin, CheckCircle, 
   XCircle, Edit2, Save, Upload, Search, User, Star, Award, Gift,
-  Eye, TrendingUp, PlayCircle, Clock
+  Eye, TrendingUp, PlayCircle, Clock, IndianRupee
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 

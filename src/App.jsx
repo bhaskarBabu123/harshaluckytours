@@ -43,6 +43,7 @@ import AdminProfile from './pages/admin/AdminProfile';
 import MemberPackageDetails from './pages/all/MemeberPackageDetails';
 import ScrollToTop from './components/ScrollToTop';
 import Pack from './pages/all/Pack';
+import TermsConditions from './pages/all/TermsConditions';
 
 // ---------------------------------------------------------------------
 // Layout with Header + Footer
@@ -77,6 +78,7 @@ function App() {
           <Route path="/member/packages" element={<Pack />} />
           <Route path="/non-member/packages" element={<NonMemberPackages />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-and-conditions" element={<TermsConditions />} />
           <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         </Route>

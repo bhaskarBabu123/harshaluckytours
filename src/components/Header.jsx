@@ -1,11 +1,12 @@
 // src/components/Header.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import logo from './logo.png';
 import {
   Menu, X, Home, FileText, MessageCircle, ChevronRight, Shield,
   ChevronDown, Package, User, LogOut, CreditCard, Bell, Settings,
-  Users, Gift
+  Users, Gift,
+  Building
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -38,9 +39,10 @@ const Header = () => {
   const publicLinks = [
     { to: '/', label: 'Home', icon: Home },
     { to: '/about', label: 'About', icon: FileText },
-    { to: '/member/packages', label: 'Packages', icon: Package },
-    { to: '/non-member/packages', label: 'Other Packages', icon: Package },
+    // { to: '/member/packages', label: 'Packages', icon: Package },
+    // { to: '/non-member/packages', label: 'Other Packages', icon: Package },
     { to: '/contact', label: 'Contact', icon: MessageCircle },
+    { to: '/terms-and-conditions', label: 'Terms & Conditions', icon: Building },
   ];
 
   const userLinks = [
@@ -63,7 +65,7 @@ const Header = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             <Link to="/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
-              <img src={logo} alt="Harsha Lucky Tours" className="h-10 w-auto" />
+              <img src={logo} alt="Harsha Lucky Tours" className="h-20 w-auto bg-gray-800" />
               <div className="hidden sm:block">
                 <h1 className="text-lg font-medium text-slate-900 leading-tight">Harsha Lucky Tours</h1>
                 <p className="text-xs text-slate-500 tracking-wide">Travel Lucky Draw</p>
@@ -179,7 +181,7 @@ const Header = () => {
                   </div>
                 </>
               ) : (
-                <div className="flex items-center gap-2 lg:gap-3">
+               <div className="flex items-center gap-2 lg:gap-3 hidden md:flex">
                   <Link
                     to="/login"
                     className="text-sm font-medium text-slate-700 hover:text-sky-600 px-4 py-2 hover:bg-sky-50 rounded-lg transition-all lg:px-5"
@@ -215,7 +217,7 @@ const Header = () => {
     >
             <div className="flex items-center justify-between p-5 border-b border-slate-100">
               <Link to="/" className="flex items-center gap-3" onClick={() => setIsMobileMenuOpen(false)}>
-                <img src={logo} alt="Logo" className="h-9 w-auto" />
+                <img src={logo} alt="Logo" className="h-12 w-auto" />
                 <div>
                   <h2 className="text-lg font-medium text-slate-900">Harsha Lucky Tours</h2>
                   <p className="text-xs text-slate-500">Lucky Travel Scheme</p>

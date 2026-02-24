@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from './logo.png'
 import { 
   Plane, Facebook, Twitter, Instagram, Youtube, 
   Mail, Phone, MapPin, ChevronRight, ShieldCheck 
@@ -16,9 +17,7 @@ const Footer = () => {
           {/* 1. Brand Identity */}
           <div className="space-y-6">
             <div className="flex items-center space-x-3">
-              <div className="bg-blue-600 p-2.5 rounded-xl shadow-lg shadow-blue-900/20">
-                <Plane className="h-6 w-6 text-white" />
-              </div>
+              <img src={logo} alt="harsha lucky tours" className='w-auto h-20' />
               <div>
                 <h3 className="text-xl font-bold tracking-tight text-white">Harsha Lucky Tours</h3>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500">Travel Lucky Draw</p>

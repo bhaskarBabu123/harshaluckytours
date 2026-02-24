@@ -5,7 +5,7 @@ import { Eye, EyeOff, Mail, Lock, ShieldCheck, ArrowLeft, Globe } from 'lucide-r
 import LoadingSpinner from '../../components/LoadingSpinner';
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ phone: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   
@@ -19,7 +19,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const result = await login(formData.email, formData.password);
+    const result = await login(formData.phone, formData.password);
     if (result.success) navigate('/');
     setLoading(false);
   };
@@ -58,19 +58,19 @@ const Login = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Email */}
             <div className="space-y-1">
-              <label className="text-xs font-medium text-slate-600 ml-1">Email Address</label>
+              <label className="text-xs font-medium text-slate-600 ml-1">Phone Number</label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                   <Mail size={16} />
                 </div>
                 <input
-                  name="email"
-                  type="email"
+                  name="phone"
+                  type="phone"
                   required
-                  value={formData.email}
+                  value={formData.phone}
                   onChange={handleChange}
                   className="block w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:bg-white focus:border-sky-500 transition-all outline-none"
-                  placeholder="name@example.com"
+                  placeholder="+91 000-0000-000"
                 />
               </div>
             </div>
@@ -117,7 +117,7 @@ const Login = () => {
               <p className="text-xs text-slate-500">
                 New member?{' '}
                 <Link to="/register" className="text-sky-600 font-semibold hover:text-emerald-600 transition-colors">
-                  Create Account
+                Request Membership
                 </Link>
               </p>
             </div>

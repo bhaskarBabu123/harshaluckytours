@@ -38,7 +38,7 @@ const AdminLayout = ({ children }) => {
     { name: 'Payments', href: '/admin/payments', icon: CreditCard },
     { name: 'Email & SMS', href: '/admin/messages', icon: Mail },
     { name: 'Current Package', href: '/admin/current-package', icon: Calendar },
-    { name: 'Pending payments', href: '/admin/pending', icon: IndianRupee },
+    // { name: 'Pending payments', href: '/admin/pending', icon: IndianRupee },
     { name: 'Profile', href: '/admin/profile', icon: User },
   ];
 

@@ -30,9 +30,12 @@ const Home = () => {
              <div className="max-w-2xl space-y-4 md:space-y-6">
                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#138cca] text-white rounded-md">
                  <Star className="w-3 h-3 fill-current" />
-                 <span className="text-[10px] font-bold uppercase tracking-widest">Official Membership Circle</span>
+                 <span className="text-[10px] font-bold uppercase tracking-widest">Welcome to Official Membership Circle</span>
                </div>
-               <h1 className="text-3xl md:text-6xl font-bold text-white leading-tight">Luxury Travel <br /><span className="text-[#138cca]">For Every Family.</span></h1>
+                <p className="text-sm md:text-lg text-slate-300 leading-relaxed max-w-lg">
+                
+               </p>
+               <h1 className="text-3xl md:text-6xl font-bold text-white leading-tight">Harsha Lucky <br /><span className="text-[#138cca]">Tours</span></h1>
                <p className="text-sm md:text-lg text-slate-300 leading-relaxed max-w-lg">
                  Harsha Lucky Tours is Bangalore's most trusted travel collective. By contributing just ₹1000 monthly, you join an elite circle of 500+ families enjoying 5-star hospitality without the financial burden.
                </p>

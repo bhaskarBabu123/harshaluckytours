@@ -45,10 +45,10 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, [token]);
 
-  const login = async (email, password, isAdmin = false) => {
+  const login = async (phone, password, isAdmin = false) => {
     try {
       const endpoint = isAdmin ? 'https://harsha-lucky-tours-final-backend.onrender.com/api/auth/login' : 'https://harsha-lucky-tours-final-backend.onrender.com/api/auth/login';
-      const response = await axios.post(endpoint, { email, password });
+      const response = await axios.post(endpoint, { phone, password });
       
       const { token: newToken, user: userData } = response.data;
       

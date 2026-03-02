@@ -6,7 +6,7 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 
 const AdminLogin = () => {
   const [formData, setFormData] = useState({
-    email: '',
+    phone: '',
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -26,7 +26,7 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading(true);
 
-    const result = await login(formData.email, formData.password, true);
+    const result = await login(formData.phone, formData.password, true);
     
     if (result.success) {
       navigate('/admin/dashboard');
@@ -53,22 +53,22 @@ const AdminLogin = () => {
         <div className="bg-white rounded-lg shadow-xl p-8">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Admin Email
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                Admin Phone number
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Mail className="h-5 w-5 text-gray-400" />
                 </div>
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
+                  id="phone"
+                  name="phone"
+                  type="text"
                   required
-                  value={formData.email}
+                  value={formData.phone}
                   onChange={handleChange}
                   className="input-field pl-10"
-                  placeholder="Enter admin email"
+                  placeholder="Enter admin phone number"
                 />
               </div>
             </div>

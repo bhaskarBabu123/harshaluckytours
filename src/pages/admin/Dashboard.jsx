@@ -56,7 +56,7 @@ const AdminDashboard = () => {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="card p-6">
             <div className="flex items-center">
               <div className="p-3 bg-blue-100 rounded-full">
@@ -93,7 +93,7 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          <div className="card p-6">
+          {/* <div className="card p-6">
             <div className="flex items-center">
               <div className="p-3 bg-yellow-100 rounded-full">
                 <TrendingUp className="w-6 h-6 text-yellow-600" />
@@ -105,7 +105,7 @@ const AdminDashboard = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Current Package Details */}

@@ -19,7 +19,6 @@ export default function Users() {
   const [editForm, setEditForm] = useState({});
   const [createForm, setCreateForm] = useState({
     name: '',
-    email: '',
     phone: '',
     city: '',
     address: '',
@@ -63,7 +62,7 @@ export default function Users() {
       toast.success('User created');
       setShowCreate(false);
       setCreateForm({
-        name: '', email: '', phone: '', city: '', address: '', dateOfBirth: '', isActive: true,
+        name: '',  phone: '', city: '', address: '', dateOfBirth: '', isActive: true,
       });
       fetchUsers();
     } catch (err) {
@@ -78,7 +77,6 @@ export default function Users() {
     setEditingId(user._id);
     setEditForm({
       name: user.name,
-      email: user.email,
       phone: user.phone,
       city: user.city,
       address: user.address ?? '',
@@ -186,7 +184,7 @@ export default function Users() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
             type="text"
-            placeholder="Search by name, email, phone..."
+            placeholder="Search by name, phone..."
             value={searchTerm}
             onChange={handleSearch}
             className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
@@ -214,7 +212,6 @@ export default function Users() {
               <form onSubmit={handleCreate} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <input placeholder="Full Name *" value={createForm.name} onChange={(e) => setCreateForm({ ...createForm, name: e.target.value })} className="border rounded px-3 py-2" required />
-                  <input placeholder="Email *" type="email" value={createForm.email} onChange={(e) => setCreateForm({ ...createForm, email: e.target.value })} className="border rounded px-3 py-2" required />
                   <input placeholder="Phone *" value={createForm.phone} onChange={(e) => setCreateForm({ ...createForm, phone: e.target.value })} className="border rounded px-3 py-2" required />
                   <input placeholder="City *" value={createForm.city} onChange={(e) => setCreateForm({ ...createForm, city: e.target.value })} className="border rounded px-3 py-2" required />
                   <input placeholder="Address" value={createForm.address} onChange={(e) => setCreateForm({ ...createForm, address: e.target.value })} className="border rounded px-3 py-2 md:col-span-2" /> 
@@ -283,12 +280,10 @@ export default function Users() {
                     <td className="px-6 py-4 text-sm">
                       {editingId === user._id ? (
                         <div className="space-y-1">
-                          <input value={editForm.email} onChange={(e) => setEditForm({ ...editForm, email: e.target.value })} className="border rounded px-2 py-1 w-full text-sm" />
-                          <input value={editForm.phone} onChange={(e) => setEditForm({ ...editForm, phone: e.target.value })} className="border rounded px-2 py-1 w-full text-sm" />
+                         <input value={editForm.phone} onChange={(e) => setEditForm({ ...editForm, phone: e.target.value })} className="border rounded px-2 py-1 w-full text-sm" />
                         </div>
                       ) : (
                         <div>
-                          <div className="flex items-center gap-1"><Mail className="w-3 h-3" /> {user.email}</div>
                           <div className="flex items-center gap-1"><Phone className="w-3 h-3" /> {user.phone}</div>
                         </div>
                       )}
@@ -352,7 +347,7 @@ export default function Users() {
                   </span>
                 </div>
                 <div className="space-y-1 text-sm">
-                  <div className="flex items-center gap-1"><Mail className="w-3 h-3" /> {user.email}</div>
+              
                   <div className="flex items-center gap-1"><Phone className="w-3 h-3" /> {user.phone}</div>
                   <div className="flex items-center gap-1"><MapPin className="w-3 h-3" /> {user.city}</div>
                 </div>
@@ -370,7 +365,6 @@ export default function Users() {
                 {editingId === user._id && (
                   <div className="mt-4 space-y-2 border-t pt-4">
                     <input value={editForm.name} onChange={(e) => setEditForm({ ...editForm, name: e.target.value })} placeholder="Name" className="w-full border rounded px-2 py-1 text-sm" />
-                    <input value={editForm.email} onChange={(e) => setEditForm({ ...editForm, email: e.target.value })} placeholder="Email" className="w-full border rounded px-2 py-1 text-sm" />
                     <input value={editForm.phone} onChange={(e) => setEditForm({ ...editForm, phone: e.target.value })} placeholder="Phone" className="w-full border rounded px-2 py-1 text-sm" />
                     <input value={editForm.city} onChange={(e) => setEditForm({ ...editForm, city: e.target.value })} placeholder="City" className="w-full border rounded px-2 py-1 text-sm" />
                     <label className="flex items-center gap-2">
